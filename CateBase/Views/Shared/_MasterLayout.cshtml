@@ -1,0 +1,60 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"] </title>
+
+    @await Component.InvokeAsync("Seo")
+    @await RenderSectionAsync("MetaTags", required: false)
+    <meta name="robots" content="index,follow" />
+    @await Component.InvokeAsync("Favicon")
+
+
+    <link rel="stylesheet" href="~/mobiletheme/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/mobiletheme/css/materialize.min.css">
+    <link rel="stylesheet" href="~/mobiletheme/css/slick.css">
+    <link rel="stylesheet" href="~/mobiletheme/css/slick-theme.css">
+    <link rel="stylesheet" href="~/mobiletheme/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/mobiletheme/css/owl.theme.css">
+    <link rel="stylesheet" href="~/mobiletheme/css/owl.transitions.css">
+    <link rel="stylesheet" href="~/mobiletheme/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    @await RenderSectionAsync("Styles", required: false)
+
+</head>
+<body>
+    @*@await Component.InvokeAsync("TopBar")*@
+    @await Component.InvokeAsync("Navigation")
+    @*@await Component.InvokeAsync("Cart")*@
+
+
+    @RenderBody()
+
+    @await Component.InvokeAsync("Footer")
+
+
+
+
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+    <script src="~/mobiletheme/js/jquery.min.js"></script>
+    <script src="~/mobiletheme/js/materialize.min.js"></script>
+    <script src="~/mobiletheme/js/slick.min.js"></script>
+    <script src="~/mobiletheme/js/owl.carousel.min.js"></script>
+    <script src="~/mobiletheme/js/custom.js"></script>
+
+
+
+
+
+
+</body>
+</html>

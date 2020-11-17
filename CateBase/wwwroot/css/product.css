@@ -1,0 +1,18 @@
+﻿.product-list-section .container .row .s6 .card-body {
+  padding: 10px; }
+  .product-list-section .container .row .s6 .card-body .card-title {
+    text-align: center; }
+  .product-list-section .container .row .s6 .card-body .price {
+    text-align: center; }
+  .product-list-section .container .row .s6 .card-body .btn-outline-danger {
+    margin-left: 37%;
+    margin-top: 10px;
+    margin-bottom: 10px; }
+
+.product-list-section .container .pagination .waves-effect .pagination-container .pagination .active {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 8px;
+  color: #fff;
+  border-radius: 50%; }

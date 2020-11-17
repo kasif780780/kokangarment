@@ -1,0 +1,107 @@
+﻿@model BasePackageModule3.ViewModels.NavViewModel
+@using Microsoft.AspNetCore.Http
+@using BasePackageModule3.TagHelpers
+@using BasePackageModule3.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 text-center">
+            <a class="navbar-brand text-white" href="@Url.Action("Index","Home")">
+                <img width="80" src="@Url.Content(Model._Logo.HeaderLogo)" alt="Logo">
+            </a>
+        </div>
+        <div class="col-md-10">
+            <h4 style="margin: 30px 0;">@Model._footer.Tagline</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" id="navbar">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg p-0">
+            @*<a class="navbar-brand text-white" href="@Url.Action("Index","Home")">
+                <img width="80" src="@Url.Content(Model._Logo.HeaderLogo)" alt="Logo">
+            </a>*@
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="Home" class="nav-link @Html.IsActive("Home", "Index")">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="AboutUs" class="nav-link @Html.IsActive("AboutUs", "Index")">
+                            About Us
+                        </a>
+                    </li>
+
+                    @if (Model.Categories.Any())
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-Course" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Products
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown-Course">
+                                <a asp-controller="Products" asp-action="Index" class="dropdown-item">All Products</a>
+
+                                @foreach (var cat in Model.Categories)
+                                {
+                                    <a asp-controller="Products" asp-action="Index" asp-route-category="@cat.Name" class="dropdown-item">@cat.Name</a>
+                                }
+                            </div>
+                        </li>
+                    }
+
+                    @if (Model._service.Any())
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdown-Course" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Our Services
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown-Course">
+                                @foreach (var myService in Model._service)
+                                {
+                                    <a class="dropdown-item" asp-controller="Services" asp-action="Details" asp-route-id="@myService.Id">@myService.Title</a>
+                                }
+                            </div>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link  @Html.IsActive("Blog", "Index")" href="@Url.Action("Index", "Blog")">Latest Updates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  @Html.IsActive("Gallery", "Index")" href="@Url.Action("Index", "Gallery")">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @Html.IsActive("Home", "Contact")" href="@Url.Action("Contact","Home")"> Contact us</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @foreach (var service in Model._more)
+                            {
+                                <a class="dropdown-item" asp-controller="Page" asp-action="Details" asp-route-id="@service.Id">@service.Name</a>
+                            }
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <partial name="_LoginPartial" />
+                    
+                    @*<li class="nav-item ">
+                        <a style="color: #fff; font-size: 15px; font-weight: 600;" class="btn btn-primary" href="@Url.Action("Contact", "Home")"> Submit Enquiry</a>
+                    </li>*@
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

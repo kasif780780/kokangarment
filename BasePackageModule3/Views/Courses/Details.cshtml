@@ -1,0 +1,88 @@
+﻿@model BasePackageModule3.Models.Course
+@{
+    ViewData["Title"] = @Model.Name;
+}
+@section MetaTags
+{
+    <meta name="keywords" content="@Model.MetaKeywords" />
+    <meta name="description" content="@Model.MetaDescription" />
+}
+<div class="container-fluid"
+     style="background: url(@Model.Image);
+    padding: 50px; background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
+    <div class="col-md-12 my-5">
+        <h1 class="text-white text-center" style="font-size: 90px; text-transform: uppercase; background: rgba(0,0,0,0.1);"> @Model.Name</h1>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="col-md-12 my-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h1 class="my-2"><b>@Model.Name</b> <button type="button" class="btn btn btn-book-now float-right" data-toggle="modal" data-target="#enrollModal">Enroll</button></h1>
+                    <div>
+                        @* <h2 class="text-muted float-left">Overview</h2> *@
+                        @* <button class="">Enroll</button> *@
+
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+                <hr />
+
+                @* <img class="d-block img-thumbnail my-5 mx-auto" width="300" src="@Model.Image" alt="@Model.Name"> *@
+                <div class="div-detail-desc">
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="enrollModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       
+            <div class="modal-header">
+                <h5 class="modal-title" id="enrollModalLabel">Enroll Now</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="Create" asp-controller="Enrollments" method="post">
+                <div class="modal-body">
+
+                    <input type="hidden" name="CourseId" value="@Model.Id" />
+                    <div class="form-group">
+                        <label for="Name" class="col-form-label">Name</label>
+                        <input required="" type="text" name="Name" class="form-control" id="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="col-form-label">Email</label>
+                        <input required="" type="text" name="Email" class="form-control" id="Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MobileNumber" class="col-form-label">Name</label>
+                        <input required="" type="tel" name="MobileNumber" class="form-control" id="MobileNumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="Message" class="col-form-label">Message</label>
+                        <textarea required="" name="Message" class="form-control" id="Message"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn btn-book-now">Submit</button>
+                </div>
+            </form>
+       
+    </div>
+</div>

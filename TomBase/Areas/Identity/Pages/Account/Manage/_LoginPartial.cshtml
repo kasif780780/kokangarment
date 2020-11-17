@@ -1,0 +1,93 @@
+﻿@using BasePackageModule2.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using Microsoft.AspNetCore.Http
+@using BasePackageModule2.Utility
+@using Microsoft.EntityFrameworkCore
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+
+    var user = await UserManager.Users.Include(a => a.Cart).FirstOrDefaultAsync(a => a.Id == UserManager.GetUserId(User));
+
+}
+<div class="main-menu-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8">
+                <!-- top-search-area start -->
+                <div class="top-search-area home-two-shearch">
+                    <div class="search-categories">
+                        <form action="#">
+                            <div class="search-form-input">
+
+                                <input type="text" placeholder="Search product...">
+                                <button class="top-search-btn" type="submit"><i class="ion-ios-search-strong"></i> Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- top-search-area end -->
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- header-cart-box start -->
+                <div class="header-cart-box header-cart-box-2">
+                    <!-- setting-account start -->
+                    <div class="setting-account home-two-setting">
+                        <div class="btn-group">
+                            <button class="btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                My Account <i class="fa fa-angle-down"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <ul>
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <li><a asp-area="TomBase" asp-controller="TomBase" asp-action="Index">Admin Panel</a></li>
+                                        <li><a asp-area="Identity" asp-page="/Account/Manage/Index">My Account</a></li>
+                                        <li><a asp-controller="Orders" asp-action="Index">My Orders</a></li>
+                                        <li><a onclick="document.getElementById('logout').submit();return false;">Logout</a></li>
+                                        <form id="logout" class="d-none" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})" method="post">
+                                            <button type="submit" class="nav-link btn btn-link dropdown-item">Logout</button>
+                                        </form>
+
+                                    }
+                                    else
+                                    {
+                                        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+                                        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- setting-account end -->
+                    <!-- top-shopoing-cart start -->
+                    <div id="top-shopoing-cart" class="btn-group">
+                        <button class="btn-link shopping-cart home-two dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ion-ios-cart"></i>
+                            <span class="top-cart-total home-two">
+                                @*<span class="item-text-number">@user.Cart.Count()</span>*@
+                                <span class="cart-text-items">Cart</span>
+                            </span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <ul class="mini-cart-sub mini-cart-2">
+
+                                <li>
+                                    <p class="text-center cart-button">
+                                        <a asp-area="" asp-controller="Cart" asp-action="Index">View Cart</a>
+                                        <a asp-area="" asp-controller="Cart" asp-action="Index">Checkout</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- top-shopoing-cart end -->
+                </div>
+                <!-- header-cart-box end -->
+            </div>
+        </div>
+    </div>
+</div>

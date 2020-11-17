@@ -1,0 +1,117 @@
+﻿@model  BasePackageModule3.ViewModels.NavViewModel
+<footer class="footer-classic context-dark" style="background:#05121d!important;">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4 col-lg-4 col-sm-12 mt-3">
+                <h5 class="mt-2">Contact Us:</h5>
+
+                <dl class="contact-list">
+                    <p>
+                        @Model._footer.StreetAddress - @Model._footer.Zipcode
+                    </p>
+
+
+                </dl>
+                <dl class="contact-list">
+                    <dd>
+                        <i class="fa fa-envelope"></i> <a href="mailto:@Model._footer.Email">
+                            @Model._footer.Email
+                        </a>
+                    </dd>
+                </dl>
+                <dl class="contact-list">
+                    <dd>
+                        <i class="fas fa-phone-alt"></i> <a href="tel:+91 @Model._footer.Phone">+91 @Model._footer.Phone</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+                        <div class="fb-page" data-href="@Model._footer.FacebookLikePage" 
+                             data-tabs="timeline" data-width="" data-height="50"
+                             data-small-header="false" data-adapt-container-width="true"
+                             data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="@Model._footer.FacebookLikePage" 
+                                    class="fb-xfbml-parse-ignore">
+                            <a href="@Model._footer.FacebookLikePage">@Model._footer.Tagline</a></blockquote></div>
+                    
+                    </dt>
+                </dl>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-12">
+                <h4 class="mt-3"> Get Queries</h4>
+
+                <p class="text-justify">Send Us your querie's we will contact you as soon as possible</p>
+             
+                <form>
+                    <div class="form-group">
+
+                        <textarea class="form-control" placeholder="Enter Message here" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" style="border-radius:0px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mb-2" style="background-color:#cddc39 !important;border:none;">Send Enquiry </button>
+                </form>
+              
+                    <div class="card-read-more">
+                        <a wh-href="href" wh-target="target" href="javascript:void(0)" target="">
+                            <div class="wh-call-to-action-content" wh-html-unsafe="text">Share This</div>
+                        </a>
+                        
+                        <ul class="nav pb-2">
+                           
+                            <li class="nav-item">
+                                <a href="@Model._footer.WhatsApp">
+                                    <i class="fab fa-whatsapp" style="color:green; font-size:18px;"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Model._footer.Instagram">
+                                    <i class="fab fa-instagram" style="color:palevioletred; font-size:18px;" ></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Model._footer.Facebook">
+                                    <i class="fab fa-facebook" style="color:royalblue; font-size:18px;"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Model._footer.Twitter"> <i class="fab fa-twitter" style="color:cornflowerblue; font-size:18px;" "=" "></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#"> <i class="fab fa-linkedin" style="color:royalblue; font-size:18px;"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-12">
+                <h4 class="mt-3">Quick Link</h4>
+                <ul>
+                    @foreach (var course in Model._service)
+                    {
+                        <li><a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">@course.Title</a></li>
+                    }
+
+                </ul>
+            </div>
+
+
+
+        </div>
+    </div>
+   
+    <div id="footerbwrap" style="background-color:#1e272e!important;margin: 0px; padding: 5px;">
+        <div id="footerb">
+            <div class="lowerfooter">
+                <div class="copyright">
+
+                    <p class="mb-0">@Model._footer.Tagline - Copyright @Model._footer.Copyright @DateTime.Now.Year</p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

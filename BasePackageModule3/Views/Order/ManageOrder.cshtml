@@ -1,0 +1,81 @@
+﻿@model List<BasePackageModule3.ViewModels.OrderDetailsViewModel>
+@using BasePackageModule3.Utility
+@{
+    ViewData["Title"] = "ManageOrder";
+}
+
+<h2 class="text-info">Manage Order's</h2>
+<form method="post" class="ml-auto mr-auto" style="width: 60%; padding:0px !important;margin-top:0px !important;">
+    <br />
+    @if(Model.Count>0)
+    {
+    <div class="container border">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 pb-3">
+                    <div class="card p-3 mt-2">
+                        <div class="row">
+                            <div class="col-3">
+                                Order Number : @item.OrderHeader.Id
+                                <ul class="text-info">
+                                    @foreach (var details in item.OrderDetails)
+                                    {
+                                        <li>@details.Name x @details.Count</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group pb-2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Time</span>
+                                    </div>
+                                    <input type="text" class="rounded border form-control" readonly value="@item.OrderHeader.PickUpDate" />
+                                </div>
+                                @{ 
+                                    var comments = item.OrderHeader.Comments;
+                                    if(comments==null || comments.Trim().Length ==0)
+                                    {
+                                        item.OrderHeader.Comments = "No Instruction";
+                                    }
+                                }
+                                <textarea asp-for="@item.OrderHeader.Comments" readonly class="rounded border form-control" style="width:100%;height:75px;"></textarea>
+                            </div>
+
+                            <div class="col-4  align-content-center">
+                                @if (item.OrderHeader.status.Equals(SD.StatusSubmitted))
+                                {
+                                    <div class="col-12">
+                                        <button type="submit" asp-action="OrderPrepare" asp-route-OrderId="@item.OrderHeader.Id" class="btn btn-info form-control mb-3">
+                                            <i class="fa fa-check"></i>&nbsp; Ready To Deliver
+                                        </button>
+                                        <button type="submit" asp-action="OrderCancel" asp-route-OrderId="@item.OrderHeader.Id" class="btn btn-danger form-control mb-3">
+                                            <i class="fa fa-times"></i>&nbsp; Cancel Order
+                                        </button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    @if (item.OrderHeader.status.Equals(SD.StatusInProcess))
+                                    {
+                                        <div class="col-12">
+                                            <button type="submit" asp-action="OrderReady" asp-route-OrderId="@item.OrderHeader.Id" class="btn btn-success form-control mb-3">
+                                                <i class="fa fa-flag-checkered"></i>&nbsp;Order Ready
+                                            </button>
+                                            <button type="submit" asp-action="OrderCancel" asp-route-OrderId="@item.OrderHeader.Id" class="btn btn-danger form-control mb-3">
+                                                <i class="fa fa-times"></i>&nbsp; Cancel Order
+                                            </button>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    }
+
+</form>
+

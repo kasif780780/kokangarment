@@ -1,0 +1,71 @@
+﻿@model BasePackageModule3.Models.Enrollment
+<div id="enrollModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form asp-controller="Enrollments" asp-action="Create">
+                <div class="row p-4">
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-lg-12 ml-auto mr-auto">
+                                <h2 class="text-center py-3">Book Now</h2>
+                            </div>
+                        </div>
+
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="row">
+                            <div class="col">
+                                <input required asp-for="Name" class="form-control mb-2" placeholder="Full name">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col mb-2">
+                                <input required asp-for="Email" type="text" class="form-control" placeholder="Email">
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col mb-2">
+                                <input required asp-for="MobileNumber" type="text" class="form-control" placeholder="Mobile Number">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col mb-2">
+                                <input required asp-for="DateTime" class="form-control" placeholder="Choose Date">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mb-2">
+                                <select required asp-for="CourseId" class="form-control" asp-items="@(new SelectList(ViewBag.courses, "Id", "Name"))">
+                                    <option value="">---Select Courses---</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col mb-2">
+                                <input required asp-for="Location" type="text" class="form-control" placeholder="Location">
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-book-now">Submit</button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

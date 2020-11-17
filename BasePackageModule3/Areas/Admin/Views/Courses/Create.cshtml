@@ -1,0 +1,99 @@
+﻿@model BasePackageModule3.Models.Course
+
+
+<div class="col-sm-12">
+    <!-- Basic Form Inputs card start -->
+    <div class="card">
+        <div class="card-header">
+
+            <h1>Create</h1>
+            <h4>Course</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="card-header-right">
+                <i class="icofont icofont-spinner-alt-5"></i>
+            </div>
+
+        </div>
+        <div class="card-block">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Category" class="control-label"></label>
+                    <input asp-for="Category" class="form-control" />
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input accept="image/*" name="image" type="file" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ShortDescription" class="control-label"></label>
+                    <textarea id="ShortDescription" asp-for="ShortDescription" class="form-control"></textarea>
+                    <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea id="Description" asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MetaKeywords" class="control-label"></label>
+                    <input asp-for="MetaKeywords" data-role="tagsinput" class="form-control" />
+                    <span asp-validation-for="MetaKeywords" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MetaDescription" class="control-label"></label>
+                    <input asp-for="MetaDescription" class="form-control" />
+                    <span asp-validation-for="MetaDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Order" class="control-label"></label>
+                    <input asp-for="Order" class="form-control" />
+                    <span asp-validation-for="Order" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+@section styles
+{
+    <link href="~/lib/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript" src="/lib/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">tinymce.init({
+            selector: '#Description, #ShortDescription',
+            plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'table emoticons template paste help'
+            ],
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify |' +
+                'fontselect fontsizeselect | forecolor backcolor' +
+                ' bullist numlist outdent indent | link image | print preview media fullpage | ' +
+                'forecolor backcolor emoticons | help',
+            menu: {
+                favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | spellchecker | emoticons' }
+            },
+            menubar: 'favs file edit view insert format tools table help',
+        });</script>
+}

@@ -1,0 +1,121 @@
+﻿<link href="~/css/home.css" rel="stylesheet" />
+    <div class="slider-slick app-pages">
+        @foreach (var image in Model.SliderImages)
+        {
+
+
+            <div class="slider-entry">
+
+                <img src="@image.Image" alt="">
+                <div class="overlay"></div>
+                <div class="caption">
+                    <div class="container">
+                        <h2>Great Shopping</h2>
+                        <p>Find your need now</p>
+                        <a class="button" asp-controller="Products" asp-action="Index">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+
+
+    </div>
+    <div class="banner">
+        <div class="container">
+            @foreach (var chunk in Model._ChunkCategory)
+            {
+                <div class="row">
+
+                    @foreach (var item in chunk)
+                    {
+                        <div class="col s6">
+                            <div class="entry" style="background: linear-gradient( rgba(47, 40, 40, 0.27), rgba(47, 40, 40, 0.27) ), url(img/embroidery-sampler-39.jpg);">
+                                <h5 class="ctname">@item.Name</h5>
+                                @*<p>@item.Description</p>*@
+                                <a class="button" asp-controller="products" asp-action="Index" asp-route-category="@item.Name">Shop Now</a>
+                            </div>
+                        </div>
+
+                    }
+
+
+                </div>
+            }
+        </div>
+    </div>
+    <div class="product app-section app-bg-dark">
+        <div class="container">
+            <div class="app-title">
+                <h4>Best Sellers</h4>
+            </div>
+            @foreach (var chunk in Model._ChunkBestSellar)
+            {
+        <div class="row">
+            @foreach (var item in chunk)
+            {
+                <div class="col s6">
+                    <div class="entry">
+                        <div class="sale">SALE</div>
+                        <div class="new">NEW</div>
+                        <img src="@item.Image" alt="">
+                        <h6><a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">@item.Name</a></h6>
+                        <div class="rating">
+                            <span class="active"><i class="fa fa-star"></i></span>
+                            <span class="active"><i class="fa fa-star"></i></span>
+                            <span class="active"><i class="fa fa-star"></i></span>
+                            <span class="active"><i class="fa fa-star"></i></span>
+                            <span class="active"><i class="fa fa-star"></i></span>
+                        </div>
+                        <div class="price">
+                            <h5>@item.FinalPrice</h5>
+                        </div>
+                    </div>
+                </div>
+                
+            }
+            </div>
+            }
+            </div>
+    </div>
+
+    <div class="product app-section app-bg-light">
+        <div class="container">
+            <div class="app-title">
+                <h4>New Product</h4>
+            </div>
+            @foreach (var chunk in Model._ChunkNewProduct)
+            {
+
+        <div class="row">
+            @foreach (var item in chunk)
+            {
+                <div class="col s6">
+                    <div class="entry">
+                        <div class="sale">SALE</div>
+                        <div class="new">NEW</div>
+                        <img src="@item.Image" alt="">
+                        <h6><a href="">@item.Name</a></h6>
+                        <div class="rating">
+                            <span class="active"><i class="fa fa-star"></i></span>
+                            <span class="active"><i class="fa fa-star"></i></span>
+                            <span class="active"><i class="fa fa-star"></i></span>
+                            <span class="active"><i class="fa fa-star"></i></span>
+                            <span class=""><i class="fa fa-star"></i></span>
+                        </div>
+                        <div class="price">
+                            <div class="price">
+                                <h5>@item.FinalPrice</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+                
+            </div>
+            }
+                
+            </div>
+    </div>

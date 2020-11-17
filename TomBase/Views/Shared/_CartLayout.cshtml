@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewData["Title"] </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+    @await Component.InvokeAsync("Favicon")
+    @await Component.InvokeAsync("Seo")
+    @await RenderSectionAsync("MetaTags", required: false)
+    <meta name="robots" content="index,follow" />
+    <!-- all CSS hear -->
+    <link rel="stylesheet" href="~/theme/palora/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/theme/palora/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/theme/palora/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/theme/palora/css/animate.css">
+    <link rel="stylesheet" href="~/theme/palora/css/nice-select.css">
+    <link rel="stylesheet" href="~/theme/palora/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/theme/palora/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/theme/palora/css/mainmenu.css">
+    <link rel="stylesheet" href="~/theme/palora/style.css">
+    <link rel="stylesheet" href="~/theme/palora/csscss/responsive.css">
+    <script src="~/theme/palora/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+
+
+    <div class="wrapper home-2">
+        @await Component.InvokeAsync("Header")
+
+        @RenderBody()
+
+
+        @await Component.InvokeAsync("Footer")
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+    <!-- jquery -->
+    <script src="~/theme/palora/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- all plugins JS hear -->
+    <script src="~/theme/palora/js/popper.min.js"></script>
+    <script src="~/theme/palora/js/bootstrap.min.js"></script>
+    <script src="~/theme/palora/js/owl.carousel.min.js"></script>
+    <script src="~/theme/palora/js/jquery.mainmenu.js"></script>
+    <script src="~/theme/palora/js/ajax-email.js"></script>
+    <script src="~/theme/palora/js/plugins.js"></script>
+    <!-- main JS -->
+    <script src="~/theme/palora/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

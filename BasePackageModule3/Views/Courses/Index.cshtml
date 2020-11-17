@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BasePackageModule3.Models.Course>
+    @{
+    ViewData["Title"] = "Our Courses";
+    }
+                      
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-lg-12 col-sm-12 col-md-12">
+                                  <h1 class="text-center"><b>Our Courses</b></h1>
+                              </div>
+                          </div>
+                          <div class="row">
+                              @foreach (var course in Model)
+            {
+                              <div class="col-sm-12 col-md-3 col-lg-3">
+
+                                  <div class="card">
+                                      <img class="card-img-top img-fluid" src="@course.Image"
+                                           alt="@course.Name">
+                                      <div class="card-body">
+
+                                          <h2 class="card-title">@course.Name</h2>
+
+                                          <h5 class="card-subtitle mb-2 text-muted my-4">@course.Category</h5>
+
+                                          <p class="card-text">@Html.Raw(course.ShortDescription)</p>
+
+                                          <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id" asp-route-slug="@course.Slug" class="btn border border-danger rounded-1 btn-block">
+                                              Read
+                                              More
+                                          </a>
+
+                                      </div>
+                                  </div>
+                              </div>
+            }
+
+                          </div>
+                      </div>
+                    
+                   

@@ -1,0 +1,185 @@
+﻿@using BasePackageModule2.Extensions
+@model BasePackageModule2.Models.Product
+
+@{ ViewData["Title"] = Model.Name; }
+
+
+
+<style>
+    .slider-main-area {
+        display: none !important;
+    }
+</style>
+
+<!-- breadcrumb-area start -->
+<div class="breadcrumb-area bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                    <li class="breadcrumb-item active">@Model.Name</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb-area end -->
+<!-- content-wraper start -->
+<div class="content-wraper bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="sinlge-product-wrap box-module">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="single-product-tab">
+                                <div class="zoomWrapper">
+                                    <div id="img-1" class="zoomWrapper single-zoom">
+                                        <a href="#">
+                                            <img id="zoom1" src="@Model.Image" data-zoom-image="@Model.Image" alt="big-1">
+                                        </a>
+                                    </div>
+                                    <div class="single-zoom-thumb">
+                                        <ul class="s-tab-zoom single-product-active owl-carousel" id="gallery_01">
+                                            @foreach (var productImage in Model.Images)
+                                            {
+                                                <li class="">
+                                                    <a href="#" class="elevatezoom-gallery" data-image="@productImage.Img" data-zoom-image="@productImage.Img"><img src="@productImage.Img" alt="zo-th-2"></a>
+                                                </li>
+                                            }
+
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <!-- product-thumbnail-content start -->
+                            <div class="quick-view-content">
+                                <div class="product-info">
+                                    <h2>@Model.Name</h2>
+                                   
+                                    <div class="price-box">
+                                        <span class="new-price">Rs. @Model.FinalPrice</span>
+                                        <span class="old-price">Rs. @Model.BasePrice</span>
+                                    </div>
+                                    <ul class="list-unstyled">
+                                        <li>Category: <a href="#">@Model.Category.Name</a></li>
+                                       
+                                        <li>Availability: In Stock</li>
+                                    </ul>
+                                    <div class="quick-add-to-cart">
+                                        <form class="modal-cart">
+                                            <div class="quantity">
+                                                <label>Quantity</label>
+                                                <div class="cart-plus-minus">
+                                                    <input type="number" value="1" min="0" step="1" class="input-box">
+                                                </div>
+                                            </div>
+
+                                            <ul class="wishlist-compare-btn">
+                                                <li><a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@Model.Id" class="btn btn-primary border-0 text-white" style="background: #3F428F;">Add To Cart</a></li>
+                                                <li><a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@Model.Id" class="btn btn-primary border-0 text-white" style="background: #3F428F;">Buy Now</a></li>
+                                            </ul>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product-thumbnail-content end -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="product-info-detailed">
+                                <div class="discription-tab-menu">
+                                    <ul role="tablist" class="nav">
+                                        <li class="active"><a href="#description" data-toggle="tab" class="active show">Description</a></li>
+                                        @*<li><a href="#review" data-toggle="tab">Reviews (1)</a></li>*@
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="discription-content">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active show" id="description">
+                                        <div class="description-content">
+                                            <p>
+                                                @Html.Raw(Model.Description)
+                                            </p>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!-- content-wraper end -->
+
+
+
+    <link href="https://www.jqueryscript.net/demo/Product-Carousel-Magnifying-Effect-exzoom/jquery.exzoom.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/css/product-details.css" rel="stylesheet" />*@
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="https://www.jqueryscript.net/demo/Product-Carousel-Magnifying-Effect-exzoom/jquery.exzoom.js"></script>
+
+    <link href="https://www.jqueryscript.net/demo/Product-Carousel-Magnifying-Effect-exzoom/jquery.exzoom.css" rel="stylesheet" type="text/css" />
+
+    <script>
+        $(document).ready(function() {
+            $("#addToCart").click(function(event) {
+                event.preventDefault();
+
+                var qty = $("#qty").val();
+
+                if (qty < 1) {
+                    alert("Please Select Quantity more than 1.");
+                } else {
+                    $('#buy-add-form').append('<input type="hidden" name="qty" value="' + qty + '" />');
+                    $('#buy-add-form').append('<input type="hidden" name="productId" value="' + @Model.Id + '" />');
+                    $("#buy-add-form").submit();
+                }
+            });
+
+
+            $("#buyNow").click(function(event) {
+                event.preventDefault();
+
+                $("#buy-add-form").attr("action", "/BuyNow");
+
+                var qty = $("#qty").val();
+
+                if (qty < 1) {
+                    alert("Please Select Quantity more than 1.");
+                } else {
+                    $('#buy-add-form').append('<input type="hidden" name="qty" value="' + qty + '" />');
+                    $('#buy-add-form').append('<input type="hidden" name="productId" value="' + @Model.Id + '" />');
+                    $("#buy-add-form").submit();
+                }
+            });
+
+        });
+    </script>
+
+
+    <script type="text/javascript">
+
+        $('.container').imagesLoaded(function () {
+            $("#exzoom").exzoom({
+                autoPlay: false,
+            });
+            $("#exzoom").removeClass('hidden')
+        });
+
+    </script>
+

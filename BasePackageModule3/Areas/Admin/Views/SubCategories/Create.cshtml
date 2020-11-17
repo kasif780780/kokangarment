@@ -1,0 +1,98 @@
+﻿@model BasePackageModule3.ViewModels.SubnCatViewModel
+ @using BasePackageModule3.Extensions
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="col-sm-12 col-lg-8">
+    <partial name="_StatusMessage" model="Model.StatusMessage" />
+    <!-- Basic Form Inputs card start -->
+    <div class="card">
+        <div class="card-header">
+
+            <h1>Create</h1>
+
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="card-header-right">
+                <i class="icofont icofont-spinner-alt-5"></i>
+            </div>
+
+        </div>
+        <div class="card-block">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label"></label>
+                    <select id="ddlcategorylist" class="form-control" asp-for="SubCategory.CategoryId" asp-items="Model.CategoryList.ToSelectListItem(Model.SubCategory.CategoryId)"></select>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Sub Category</label>
+                    <input asp-for="SubCategory.Name" class="form-control" />
+
+                </div>
+               
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12 col-lg-4">
+    <div class="card">
+        <div class="card-block">
+            @if(Model.SubCategoryList.Count()>0)
+            {
+                <p>Exsisting Sub Category</p>
+
+                <div id="SubCategoryList">
+                   
+                </div>
+            }
+        </div>
+
+    </div>
+    </div>
+        
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+@section Scripts{ 
+    @{  await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+ <script>
+     function updateSubcategoryList() {
+         var categorySelected = document.getElementById("ddlcategorylist").value;
+        
+         $list = $('#SubCategoryList');
+         $.ajax({
+             url: '/Admin/SubCategories/GetSubCategory/' + categorySelected,
+             type: 'GET',
+             dataType: 'text',
+             success: function (data) {
+                 results = JSON.parse(data);
+                 $list.html('');
+                 $list.append('<ul class="list-group">')
+                 for (i in results) {
+                     $list.append('<li class="list-group-item">' + results[i].text + '</li>')
+                 }
+                 $list.append('</ul>');
+             }
+         })
+     }
+
+     $(document).ready(function () {
+         debugger;
+         updateSubcategoryList();
+     });
+     $("#ddlCategoryList").on("change", function () {
+         updateSubcategoryList();
+     })
+ </script>
+}
+

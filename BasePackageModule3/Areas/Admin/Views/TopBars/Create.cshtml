@@ -1,0 +1,100 @@
+﻿@model BasePackageModule3.Models.TopBar
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="col-sm-12">
+    <!-- Basic Form Inputs card start -->
+    <div class="card">
+        <div class="card-header">
+
+            <h1>Create</h1>
+            <h4>Top Bar Items</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="card-header-right">
+                <i class="icofont icofont-spinner-alt-5"></i>
+            </div>
+
+        </div>
+        <div class="card-block">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StreetAddress" class="control-label"></label>
+                    <input asp-for="StreetAddress" class="form-control" />
+                    <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City" class="control-label"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="State" class="control-label"></label>
+                    <input asp-for="State" class="form-control" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Country" class="control-label"></label>
+                    <input asp-for="Country" class="form-control" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Zipcode" class="control-label"></label>
+                    <input asp-for="Zipcode" class="form-control" />
+                    <span asp-validation-for="Zipcode" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <button> <a asp-action="Index" class="btn btn-info">Back to List</a></button>
+    </div>
+</div>
+
+@section styles
+{
+    <link href="~/lib/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript" src="/lib/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#editor',
+            plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'table emoticons template paste help'
+            ],
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify |' +
+                'fontselect fontsizeselect | forecolor backcolor' +
+                ' bullist numlist outdent indent | link image | print preview media fullpage | ' +
+                'forecolor backcolor emoticons | help',
+            menu: {
+                favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | spellchecker | emoticons' }
+            },
+            menubar: 'favs file edit view insert format tools table help',
+        });
+    </script>
+}
+
+
+

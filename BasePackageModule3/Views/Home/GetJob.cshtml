@@ -1,0 +1,100 @@
+﻿@model BasePackageModule3.Models.FindJob
+
+
+@{
+    ViewData["Title"] = "Create";
+  
+}
+
+
+
+    <form id="myForm" class="p-3" asp-action="GetJob" method="POST" style="border:1px solid lightgray;">
+        <h1>Registration Form</h1>
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab">
+            Primary Info:
+            <p> <input asp-for="FullName" class="form-control" placeholder="Enter Full Name" /></p>
+            <p><input asp-for="Mobile" class="form-control" placeholder="Enter Mobile Number" /></p>
+            <p><input asp-for="Email" class="form-control" placeholder="Enter Email Address" /></p>
+
+        </div>
+        <div class="tab">
+            Address Info:
+            <p><input asp-for="City" class="form-control"  placeholder="City"/></p>
+            <p> <input asp-for="Location" class="form-control" placeholder="Location" /></p>
+        </div>
+        <div class="tab">
+            Age:
+            <p><input asp-for="Age" class="form-control" placeholder="Age"/></p>
+            <p>
+               
+                <select class="custom-select form-control" asp-for="Gender" id="inputGroupSelect01">
+                    <option selected>Choose Gender...</option>
+                    <option value="Male">Male</option>
+                    <option value="FeMale">FeMale</option>
+                    
+                </select>
+            </p>
+
+        </div>
+        <div class="tab">
+            Education
+            <p> <select class="custom-select form-control" asp-for="Qualification" id="inputGroupSelect01">
+    <option selected>Choose Gender Qualification...</option>
+    <option value="Below 10th Pass">Below 10th Pass</option>
+    <option value="10th Pass">10th Pass</option>
+    <option value="12th Pass">12th Pass</option>
+    <option value="Garaduate">Graduate</option>
+
+</select></p>
+            <p>
+              School Medium
+                <select class="custom-select form-control" asp-for="SchoolMedium" id="inputGroupSelect01">
+                    <option selected>Choose Medium...</option>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Marathi">Marathi</option>
+
+                </select></p>
+            <p>
+                English Speaking
+                <select class="custom-select form-control" asp-for="SpeakEnglish" id="inputGroupSelect01">
+                    <option selected>Choose ...</option>
+                    <option value="No English">No English</option>
+                    <option value="Thoda ">Thoda</option>
+                    <option value="Good">Good</option>
+                    <option value="Fluent">Fluent</option>
+
+                </select>
+            </p>
+        </div>
+        <div class="tab">
+            Experience:
+            <p>
+                <select class="custom-select form-control" asp-for="Experience" id="inputGroupSelect01">
+                    <option selected>I am ...</option>
+                    <option value="Fresher">Fresher</option>
+                    <option value="Experienced ">Experienced</option>
+                   
+
+                </select>
+            </p>
+            <p> <input asp-for="JobRole" class="form-control" /></p>
+            
+        </div>
+        <div style="overflow:auto;">
+            <div style="float:right; margin-top: 5px;">
+                <button type="button" class="previous">Previous</button>
+                <button type="button" class="next">Next</button>
+                <button type="button" class="submit">Submit</button>
+            </div>
+        </div>
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step">1</span>
+            <span class="step">2</span>
+            <span class="step">3</span>
+            <span class="step">4</span>
+            <span class="step">4</span>
+        </div>
+    </form>

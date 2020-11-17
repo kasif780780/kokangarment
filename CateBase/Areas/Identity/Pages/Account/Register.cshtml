@@ -1,0 +1,29 @@
+﻿@page
+@using BasePackageModule2.Utility
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<!-- register-->
+<div class="register app-pages app-section">
+    <div class="container">
+        <div class="pages-title">
+            <h3>Register</h3>
+        </div>
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <input type="text" placeholder="First Name" asp-for="Input.FirstName">
+            <input type="text" placeholder="Last Name" asp-for="Input.LastName">
+            <input type="text" placeholder="Phone" asp-for="Input.PhoneNumber">
+            <input type="email" placeholder="Email" asp-for="Input.Email">
+            <input type="password" placeholder="password" asp-for="Input.Password">
+            <input type="password" placeholder="password" asp-for="Input.ConfirmPassword">
+            <button type="submit" class="button">Register</button>
+            <strong class="login-now">Your already registered? <a href="/Identity/Account/Login">Login now</a></strong>
+        </form>
+
+    </div>
+</div>
+<!-- end register -->

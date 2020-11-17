@@ -1,0 +1,107 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ml-auto" style="align-items:center;">
+            <li class="nav-item active">
+                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Index">Dashboard<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage customer
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="ContactMessages" asp-action="Index">Enquiries</a>
+                    <a class="dropdown-item" href="#">calls</a>
+                  
+                    <a class="dropdown-item" href="#">New Letter Subscribers</a>
+
+
+
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Orders
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                   
+               
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Order" asp-action="ManageOrder">Manage Orders</a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Order" asp-action="OrderPickUp">Order PickUp</a>
+
+
+
+                </div>
+            </li>
+            <li class="nav-item active">
+
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage profile
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Footers" asp-action="Index">Business Profile</a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="AboutUs" asp-action="Index">About Us</a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Logoes" asp-action="Index"> logo & favicon </a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Images" asp-action="Index"> image gallery </a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="SliderImages" asp-action="Index"> Sliders </a>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage Content
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Items" asp-action="Index"> Product Catalogue </a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Categories" asp-action="Index"> Category </a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="SubCategories" asp-action="Index"> Sub-Category </a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Coupons" asp-action="Index"> Coupons </a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Services" asp-action="Index"> Service Catalogue </a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Posts" asp-action="Index"> Latest Updates </a>
+                    @*<a class="dropdown-item" asp-area="Admin" asp-controller="Courses" asp-action="Index"> Courses </a>*@
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Pages" asp-action="Index"> Custom Page </a>
+
+
+
+                    @*<a class="dropdown-item" href="#">Custom pages</a>
+        <a class="dropdown-item" href="#">OTHER SECTION</a>*@
+
+                    @*<a class="dropdown-item" href="#">content sharing</a>*@
+
+
+
+                </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" style="color:rgba(0,0,0,.5);">Add-ons Market Place</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" asp-area="Admin" style="color:rgba(0,0,0,.5);" asp-controller="Seos" asp-action="Index">SEO Function</a>
+            </li>
+
+            <partial name="_LoginPartial" />
+
+
+        </ul>
+
+    </div>
+</nav>

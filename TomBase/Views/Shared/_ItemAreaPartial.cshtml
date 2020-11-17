@@ -1,0 +1,114 @@
+﻿@model IEnumerable<BasePackageModule2.Models.Product>
+
+
+
+
+
+
+<div class="shop-products-wrapper">
+    <div class="tab-content">
+        <div id="grid" class="tab-pane fade active show" role="tabpanel">
+            <div class="shop-product-wrap box-module">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <!-- sinle-product-item start -->
+        <div class="sinle-product-item mb-20">
+            <div class="product-thumb">
+                <a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">
+                    <img alt="" src="@item.Image" class="primary-image">
+                </a>
+                <div class="action-links">
+                   
+                    <a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id" class="action-btn btn-quickview"><i class="ion ion-ios-eye"></i></a>
+                </div>
+                <div class="add-to-cart">
+                    <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@item.Id" class="btn-cart"><span> Add to Cart </span></a>
+                </div>
+            </div>
+            <div class="product-info">
+
+                <h4 class="product-name"><a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">@item.Name</a></h4>
+                <div class="price-box">
+                    <span class="new-price">Rs.@item.FinalPrice</span>
+                </div>
+            </div>
+        </div>
+        <!-- sinle-product-item end -->
+    </div>}
+
+
+                </div>
+            </div>
+        </div>
+
+        <div id="list" class="tab-pane fade" role="tabpanel">
+            <div class="shop-product-list-wrap box-module">
+                <div class="row">
+                    <div class="col">
+                        @foreach (var item in Model)
+                        {
+
+        <div class="row product-layout-list">
+            <div class="col-lg-5 col-md-5">
+                <!-- sinle-product-item start -->
+                <div class="sinle-product-item">
+                    <div class="product-thumb">
+                        <a href="single-product.html">
+                            <img alt="" src="@item.Image" class="primary-image">
+                            <img alt="" src="@item.Image" class="secondary-image">
+                        </a>
+                        <div class="action-links">
+                            <a href="#" class="action-btn btn-wishlist"><i class="ion-android-favorite-outline"></i></a>
+                            <a href="#" class="action-btn btn-compare"><i class="ion-arrow-swap"></i></a>
+                            <a href="#" data-target="#exampleModalCenter" data-toggle="modal" class="action-btn btn-quickview"><i class="ion ion-ios-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- sinle-product-item end -->
+            </div>
+            <div class="col-lg-7 col-md-7">
+                <div class="product-info">
+
+                    <h4 class="product-name"><a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">@item.Name</a></h4>
+                    <div class="price-box">
+                        <span class="new-price">Rs. @item.FinalPrice</span>
+                    </div>
+                    <p class="product-des">@item.ShortDescription</p>
+                    <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@item.Id"><span>Add to Cart</span></a>
+                </div>
+            </div>
+        </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- paginatoin-area start -->
+            <div class="paginatoin-area">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <p>Showing 10-13 of 13 item(s) </p>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <ul class="pagination-box">
+                            <li>
+                                <a href="#" class="Previous"> <i class="fa fa-angle-double-left"></i> </a>
+                            </li>
+                            <li><a href="#" class="active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li>
+                                <a href="#" class="Next"> <i class="fa fa-angle-double-right"></i> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- paginatoin-area end -->
+        </div>
+    </div>
+    
+</div>

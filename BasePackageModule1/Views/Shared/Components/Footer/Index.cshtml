@@ -1,0 +1,166 @@
+﻿@model BasePackageModule1.ViewModels.NavViewModel
+<footer class="">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4 mt-3">
+                <h4 class="mt-2">Contact Us</h4>
+                <dl>
+                    @Model.BusinessProfile.Address
+                    <br />
+                    @Model.BusinessProfile.City, @Model.BusinessProfile.State - @Model.BusinessProfile.Pincode , @Model.BusinessProfile.Country
+                </dl>
+                <dl>
+                    <dd>
+                        <i class="fa fa-envelope"></i> <a href="mailto:@Model.BusinessProfile.EmailAddress">
+                            @Model.BusinessProfile.EmailAddress
+                        </a>
+                    </dd>
+                </dl>
+                @if (Model.BusinessProfile.RegisteredContactNumber != null)
+                {
+                    <dl>
+                        <dd>
+                            <i class="fas fa-phone-alt"></i> <a href="tel:@Model.BusinessProfile.RegisteredContactNumber">@Model.BusinessProfile.RegisteredContactNumber</a>
+                        </dd>
+                    </dl>
+                }
+               @if (Model.BusinessProfile.AlternateContactNumber != null)
+               {
+                   <dl>
+                       <dd>
+                           <i class="fas fa-phone-alt"></i> <a href="tel:@Model.BusinessProfile.AlternateContactNumber">@Model.BusinessProfile.AlternateContactNumber</a>
+                       </dd>
+                   </dl>
+               }
+                @if (Model.BusinessProfile.DisplayContact1 != null)
+                {
+                    <dl>
+                        <dd>
+                            <i class="fas fa-phone-alt"></i> <a href="tel:@Model.BusinessProfile.DisplayContact1">@Model.BusinessProfile.DisplayContact1</a>
+                        </dd>
+                    </dl>
+                }
+               @if (Model.BusinessProfile.DisplayContact2 != null)
+               {
+                   <dl>
+                       <dd>
+                           <i class="fas fa-phone-alt"></i> <a href="tel:@Model.BusinessProfile.DisplayContact2">@Model.BusinessProfile.DisplayContact2</a>
+                       </dd>
+                   </dl>
+               }
+                @if (Model.BusinessProfile.DisplayContact3 != null)
+                {
+                    <dl>
+                        <dd>
+                            <i class="fas fa-phone-alt"></i> <a href="tel:@Model.BusinessProfile.DisplayContact3">@Model.BusinessProfile.DisplayContact3</a>
+                        </dd>
+                    </dl>
+                }
+               
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-12">
+                <h4 class="mt-3"> Get Queries</h4>
+                <p class="text-justify">Send Us your querie's we will contact you as soon as possible</p>
+                <form>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Enter Message here" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" style="border-radius:0px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mb-2">Send Enquiry </button>
+                </form>
+            </div>
+          
+            <div class="col-md-5">
+                <div class="card-read-more float-right">
+                    <h4 class="mt-3">Social Media</h4>
+                    <ul class="nav pb-2">
+                        @if (@Model.BusinessProfile.WhatsAppForBusinessNumber != null)
+                        {
+                            <li class="nav-item">
+                                <a href="https://wa.me/@Model.BusinessProfile.WhatsAppForBusinessNumber" target="_blank">
+                                    <i class="fab fa-whatsapp" style="color:green;"></i>
+                                </a>
+                            </li>
+                        }
+                        @if (@Model.BusinessProfile.FacebookPageURL != null)
+                        {
+                            <li class="nav-item">
+                                <a href="@Model.BusinessProfile.FacebookPageURL" target="_blank">
+                                    <i class="fab fa-facebook" style="color:royalblue;"></i>
+                                </a>
+                            </li>
+                        }
+                        @if (@Model.BusinessProfile.InstagramPageURL != null)
+                        {
+                            <li class="nav-item">
+                                <a href="@Model.BusinessProfile.InstagramPageURL" target="_blank">
+                                    <i class="fab fa-instagram" style="color:palevioletred;"></i>
+                                </a>
+                            </li>
+                        }
+                       
+                        @if (@Model.BusinessProfile.TwitterURL != null)
+                        {
+                            <li class="nav-item">
+                                <a href="@Model.BusinessProfile.TwitterURL" target="_blank">
+                                    <i class="fab fa-twitter" style="color: cornflowerblue;"></i>
+                                </a>
+                            </li>
+                        }
+                        @if (@Model.BusinessProfile.LinkedInURL != null)
+                        {
+                            <li class="nav-item">
+                                <a href="@Model.BusinessProfile.LinkedInURL" target="_blank">
+                                    <i class="fab fa-linkedin" style="color: royalblue;"></i>
+                                </a>
+                            </li>
+                        }
+                        @if (@Model.BusinessProfile.YoutubeURL != null)
+                        {
+                            <li class="nav-item">
+                                <a href="@Model.BusinessProfile.YoutubeURL" target="_blank">
+                                    <i class="fab fa-youtube" style="color: #FF0000;"></i>
+                                </a>
+                            </li>
+                        }
+                       
+                    </ul>
+                    
+                    <div id="fb-root"></div>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+                    <div class="fb-page" data-href="@Model.BusinessProfile.FacebookPageURL"
+                         data-tabs="timeline" data-width="" data-height="50"
+                         data-small-header="false" data-adapt-container-width="true"
+                         data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="@Model.BusinessProfile.FacebookPageURL"
+                                    class="fb-xfbml-parse-ignore">
+                            <a href="@Model.BusinessProfile.FacebookPageURL">@Model.BusinessProfile.BusinessName</a>
+                        </blockquote>
+                    </div>
+                    @if (@Model.BusinessProfile.OtherWebsite != null)
+                    {
+                        <h4 class="mt-3">Other Website</h4>
+                        
+                        <a href="@Model.BusinessProfile.OtherWebsite" style="font-size: 12px" target="_blank">
+                            <i class="fas fa-link" style="color: gray;"></i>   @Model.BusinessProfile.OtherWebsite
+                        </a>
+                        
+                    }
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <div id="footerbwrap">
+        <div id="footerb">
+            <div class="lowerfooter">
+                <div class="copyright">
+                    <p class="mb-0">@Model.BusinessProfile.Copyright - Copyright @DateTime.Now.Year</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,378 @@
+﻿@model BasePackageModule2.ViewModels.HomeViewModel
+
+
+    <div class="section-row bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                   
+                    <div class="benner-area pt-0">
+                        <div class="row">
+                            @foreach(var item in Model._banner)
+                            {
+                            <div class="col-lg-6 col-md-6">
+                                  
+                                <div class="single-benner mt-30">
+                                    <a href="#">
+                                        <img src="@item.Image" alt="">
+                                    </a>
+                                </div>
+                                
+                            </div>  
+
+                            } 
+                            
+                            
+                        </div>
+                    </div>
+                    
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            
+                            <div class="deals-offer-day box-module">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="secton-title title-2">
+                                            <h2>Deals Of The Day </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="deals-offer-one-active owl-carousel">
+                                        @foreach(var product in Model._items)
+                                        {
+                                        <div class="col-lg-12">
+                                            
+                                            <div class="single-deals-offer deals-offer-2">
+                                                <div class="product-thumb">
+                                                    <a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id" class="product-image"><img src="@Model._sitem.Image" alt=""></a>
+                                                    <div class="label-product label-sale labele-sale-2">@product.DiscountPercentage%</div>
+                                                </div>
+                                                <div class="product-info">
+
+                                                    <h4 class="product-name"><a asp-action="Details" asp-controller="Products" asp-route-id="@Model._sitem.Id">@Model._sitem.Name</a></h4>
+                                                    <div class="price-box">
+                                                        <span class="new-price">Rs.@product.FinalPrice</span>
+                                                        <span class="old-price">Rs.@Model._sitem.BasePrice</span>
+                                                    </div>
+                                                    <p class="text-hurryup">Hurry Up! Offer ends in:</p>
+                                                    
+                                                    <div class="countdown-deals" data-countdown="2022/03/01"></div>
+                                                     
+                                                    <div class="action-links action-">
+                                                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.Id"class="btn-cart">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             
+                                        </div>
+                                        }
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                             
+                            <div class="box-product-area mt-60">
+                                <div class="product-module-1">
+                                    <div class="secton-title title-2">
+                                        <h2>you may like</h2>
+                                    </div>
+                                    <div class="product-h-2 priduct-module-1-active owl-carousel">
+                                        <div class="module-1-item module-1-item-color">
+                                            @foreach (var product in Model._youmayLike)
+                                            {
+                                                <div class="single-product-module-1">
+                                                    <div class="product-thumb">
+                                                        <a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id"><img src="@product.Image" alt=""></a>
+                                                    </div>
+                                                    <div class="product-desc">
+                                                        <h4 class="product-name"><a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id">@product.Name</a></h4>
+                                                        <div class="price-box">
+                                                            <span class="new-price">Rs.@product.FinalPrice</span>
+                                                            <span class="old-price">Rs. @product.BasePrice</span>
+                                                        </div>
+                                                        <div class="shopping-btn">
+                                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.Id" class="btn-cart"><i class="ion-ios-cart"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+
+                                           
+                                        </div>
+                                        <div class="module-1-item module-1-item-color">
+                                            @foreach (var product in Model._youmayLike)
+                                            {
+                                                <div class="single-product-module-1">
+                                                    <div class="product-thumb">
+                                                        <a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id"><img src="@product.Image" alt=""></a>
+                                                    </div>
+                                                    <div class="product-desc">
+                                                        <h4 class="product-name"><a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id">@product.Name</a></h4>
+                                                        <div class="price-box">
+                                                            <span class="new-price">Rs.@product.FinalPrice</span>
+                                                            <span class="old-price">Rs. @product.BasePrice</span>
+                                                        </div>
+                                                        <div class="shopping-btn">
+                                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.Id" class="btn-cart"><i class="ion-ios-cart"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+
+
+                                        </div>
+                                        <div class="module-1-item module-1-item-color">
+                                            @foreach (var product in Model._youmayLike)
+                                            {
+                                                <div class="single-product-module-1">
+                                                    <div class="product-thumb">
+                                                        <a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id"><img src="@product.Image" alt=""></a>
+                                                    </div>
+                                                    <div class="product-desc">
+                                                        <h4 class="product-name"><a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id">@product.Name</a></h4>
+                                                        <div class="price-box">
+                                                            <span class="new-price">Rs.@product.FinalPrice</span>
+                                                            <span class="old-price">Rs. @product.BasePrice</span>
+                                                        </div>
+                                                        <div class="shopping-btn">
+                                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.Id" class="btn-cart"><i class="ion-ios-cart"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                              
+                        </div>
+                    </div>
+
+                   
+                    <div class="product-area box-module">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="tabs-categorys-list secton-title title-2">
+                                    <ul class="nav" role="tablist">
+                                        <li role="presentation" class="active"><a href="#new-arrivals" aria-controls="new-arrivals" role="tab" data-toggle="tab">New arrivals</a></li>
+                                        <li role="presentation"><a href="#best-sellers" aria-controls="best-sellers" role="tab" data-toggle="tab">Best Sellers</a></li>
+                                        <li role="presentation"><a href="#on-sellers" aria-controls="on-sellers" role="tab" data-toggle="tab">on Sellers</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                          
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="new-arrivals">
+                                <div class="product-wrapper ">
+                                    <div class="row">
+                                        <div class="prodict-active owl-carousel">
+                                            @foreach(var newitem in Model._newArrival)
+                                            {
+                                            <div class="col-lg-3">
+                                                
+                                                <div class="sinle-product-item">
+                                                    <div class="product-thumb">
+                                                        <a asp-action="Details" asp-controller="Products" asp-route-id="@newitem.Id">
+                                                            <img class="primary-image" src="@newitem.Image" alt="">
+                                                            <img class="secondary-image" src="@newitem.Image" alt="">
+                                                        </a>
+                                                        <div class="label-product">@newitem.DiscountPercentage%</div>
+                                                        <div class="action-links action-">
+                                                            <a class="action-btn btn-wishlist" href="#"><i class="ion-android-favorite-outline"></i></a>
+                                                            <a class="action-btn btn-compare" href="#"><i class="ion-arrow-swap"></i></a>
+                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="ion ion-ios-eye"></i></a>
+                                                        </div>
+                                                        <div class="add-to-cart">
+                                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@newitem.Id" class="btn-cart"><i class="ion-ios-cart"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-info">
+                                                       
+                                                        <h4 class="product-name"><a asp-action="Details" asp-controller="Products" asp-route-Id="@newitem.Id">@newitem.Name</a></h4>
+                                                        <div class="price-box">
+                                                            <span class="new-price">Rs.@newitem.FinalPrice</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            }
+                                            
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="best-sellers">
+                                <div class="product-wrapper">
+                                    <div class="row">
+                                        <div class="prodict-active owl-carousel">
+                                            @foreach (var newitem in Model._newArrival)
+                                            {
+                                                <div class="col-lg-3">
+                                                    
+                                                    <div class="sinle-product-item">
+                                                        <div class="product-thumb">
+                                                            <a  asp-action="Details" asp-controller="Products" asp-route-id="@newitem.Id">
+                                                                <img class="primary-image" src="@newitem.Image" alt="">
+                                                                <img class="secondary-image" src="@newitem.Image" alt="">
+                                                            </a>
+                                                            <div class="label-product">@newitem.DiscountPercentage%</div>
+                                                            <div class="action-links action-">
+                                                                <a class="action-btn btn-wishlist" href="#"><i class="ion-android-favorite-outline"></i></a>
+                                                                <a class="action-btn btn-compare" href="#"><i class="ion-arrow-swap"></i></a>
+                                                                <a class="action-btn btn-quickview" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="ion ion-ios-eye"></i></a>
+                                                            </div>
+                                                            <div class="add-to-cart">
+                                                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@newitem.Id" class="btn-cart"><i class="ion-ios-cart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-info">
+
+                                                            <h4 class="product-name"><a asp-action="Details" asp-controller="Products" asp-route-Id="@newitem.Id">@newitem.Name</a></h4>
+                                                            <div class="price-box">
+                                                                <span class="new-price">Rs.@newitem.FinalPrice</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="on-sellers">
+                                <div class="product-wrapper">
+                                    <div class="row">
+                                        <div class="prodict-active owl-carousel">
+                                            @foreach (var newitem in Model._newArrival)
+                                            {
+                                                <div class="col-lg-3">
+                                                    
+                                                    <div class="sinle-product-item">
+                                                        <div class="product-thumb">
+                                                            <a  asp-action="Details" asp-controller="Products" asp-route-id="@newitem.Id">
+                                                                <img class="primary-image" src="@newitem.Image" alt="">
+                                                                <img class="secondary-image" src="@newitem.Image" alt="">
+                                                            </a>
+                                                            <div class="label-product">@newitem.DiscountPercentage%</div>
+                                                            <div class="action-links action-">
+                                                                <a class="action-btn btn-wishlist" href="#"><i class="ion-android-favorite-outline"></i></a>
+                                                                <a class="action-btn btn-compare" href="#"><i class="ion-arrow-swap"></i></a>
+                                                                <a class="action-btn btn-quickview" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="ion ion-ios-eye"></i></a>
+                                                            </div>
+                                                            <div class="add-to-cart">
+                                                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@newitem.Id" class="btn-cart"><i class="ion-ios-cart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-info">
+
+                                                            <h4 class="product-name"><a asp-action="Details" asp-controller="Products" asp-route-Id="@newitem.Id">@newitem.Name</a></h4>
+                                                            <div class="price-box">
+                                                                <span class="new-price">Rs.@newitem.FinalPrice</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                    </div>
+                   
+                    <div class="featured-categories-area box-module">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="secton-title  title-2">
+                                    <h2> Featured Categories</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 owl-container">
+                                <div class="feategory-active owl-carousel">
+                                    @foreach (var category in Model._Category)
+                                    {
+                                        <div class="fcategory-content">
+                                            <div class="fcategory-image">
+                                                <a  asp-action="Index" asp-controller="Products" asp-route-data-categoryId="@category.Id"><img src="@category.Image" alt=""></a>
+                                            </div>
+                                            <div class="fcategory-title">
+                                                <h3><a  asp-action="Index" asp-controller="Products" asp-route-data-categoryId="@category.Id">@category.Name</a></h3>
+                                            </div>
+                                        </div>
+                                    }
+                                   
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-area-style2 box-module">
+                        <div class="title-style-three">
+                            <h2>Top Selling Product</h2>
+                            <a href="/Products" class="view-all-btn">view all</a>
+                        </div>
+                       
+                        <div class="product-three-wrapper">
+                            <div class="row">
+                                <div class="product-three-active owl-carousel">
+                                    @foreach (var item in Model._items)
+                                    {
+                                        <div class="col-lg-3">
+                                            
+                                            <div class="sinle-product-item">
+                                                <div class="product-thumb">
+                                                    <a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">
+                                                        <img class="primary-image" src="@item.Image" alt="">
+                                                    </a>
+                                                    <div class="action-links action-">
+                                                        <a class="action-btn btn-wishlist" href="#"><i class="ion-android-favorite-outline"></i></a>
+                                                        <a class="action-btn btn-compare" href="#"><i class="ion-arrow-swap"></i></a>
+                                                        <a class="action-btn btn-quickview" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="ion ion-ios-eye"></i></a>
+                                                    </div>
+                                                    <div class="add-to-cart">
+                                                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@item.Id" class="btn-cart"><i class="ion-ios-cart"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-info">
+                                                    
+                                                    <h4 class="product-name"><a asp-action="Details" asp-controller="Products">@item.Name</a></h4>
+                                                    <div class="price-box">
+                                                        <span class="new-price">Rs @item.FinalPrice</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    }
+
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>

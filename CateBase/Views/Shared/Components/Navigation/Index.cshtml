@@ -1,0 +1,101 @@
+﻿@model BasePackageModule2.ViewModels.NavViewModel
+@using System.Text.Encodings.Web
+@using Microsoft.AspNetCore.Http
+@using BasePackageModule2.TagHelpers
+@using BasePackageModule2.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using Microsoft.EntityFrameworkCore
+
+@{
+
+    var user = await UserManager.Users.Include(a => a.Cart).FirstOrDefaultAsync(a => a.Id == UserManager.GetUserId(User));
+
+}
+<!-- navbar -->
+<div class="navbar">
+    <div class="container">
+        <div class="row">
+            <div class="col s1"> <a href="#" data-activates="slide-out-left" class="sidenav-control-left"><i class="fa fa-bars"></i></a></div>
+          
+            <div class="col s8">
+                <form method="get" class="col s12" role="search" asp-controller="Search" asp-action="Index">
+                    <div class="row">
+                        <input type="text" name="query" class="col s9" placeholder="Search products...">
+                        <div class="col s3">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col s3"> <partial name="_LoginPartial" /></div>
+        </div>
+     
+    </div>
+    </div>
+<!-- end navbar -->
+
+
+<div class="panel-control-left">
+    <ul id="slide-out-left" class="side-nav collapsible" data-collapsible="accordion">
+
+        @foreach (var menu in Model.Menus)
+        {
+
+            if (menu.Type == "categoryCollection")
+            {
+                <li>
+                    <div class="collapsible-header"><i class="fa fa-indent"></i>@menu.Name  <span><i class="fa fa-chevron-right"></i></span></div>
+                    <div class="collapsible-body">
+                        <ul class="categories-in collapsible" data-collapsible="accordion">
+
+
+                            <li>
+                                <div class="collapsible-header"> @menu.Name <span><i class="fa fa-chevron-right"></i></span></div>
+                                <div class="collapsible-body">
+                                    <ul class="side-nav-panel">
+                                        @foreach (var menuCategory in menu.MenuCategories)
+                                        {
+                                            <li><a asp-area="" asp-controller="Products" asp-action="Index" asp-route-category="@menuCategory.Category.Name">@menuCategory.Category.Name</a></li>
+
+                                        }
+
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </li>
+            }
+
+            @if (menu.Type == "interLink" || menu.Type == null)
+            {
+                <li>
+                    <a href="@menu.Url"><i class="fa fa-shopping-basket"></i>@menu.Name</a>
+                </li>
+            }
+            else if (menu.Type == "externalLink")
+            {
+                <li>
+                    <a href="@menu.Url"><i class="fa fa-shopping-basket"></i>@menu.Name</a>
+                </li>
+            }
+        }
+        <li>
+            <a href="/Home/Contact"><i class="fa fa-envelope"></i>Contact Us</a>
+        </li>
+        <li>
+            <a asp-area="Identity" asp-page="/Account/Login"><i class="fa fa-sign-in"></i>Login</a>
+        </li>
+        <li>
+            <a asp-area="Identity" asp-page="/Account/Register"><i class="fa fa-user-plus"></i>Register</a>
+        </li>
+
+    </ul>
+</div>

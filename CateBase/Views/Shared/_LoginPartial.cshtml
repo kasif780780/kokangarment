@@ -1,0 +1,34 @@
+﻿@using BasePackageModule2.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using Microsoft.AspNetCore.Http
+@using BasePackageModule2.Utility
+@using Microsoft.EntityFrameworkCore
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+
+    var user = await UserManager.Users.Include(a => a.Cart).FirstOrDefaultAsync(a => a.Id == UserManager.GetUserId(User));
+    
+}
+    
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+           
+            <div class="panel-control-right">
+                <a asp-controller="Cart" asp-action="Index" data-activates="slide-out-right" class="sidenav-control-right">
+                    <i class="fa fa-shopping-bag"></i>
+
+
+                    <span>@user.Cart.Count()</span>
+
+
+                </a>
+            </div>
+
+        }
+      
+
+ 

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BasePackageModule3.Models.Service>
+
+    <section class="about-us-section">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <h2 class="text-center"> Service</h2>
+            </div>
+        </div>
+
+    </section>
+
+        <div class="container-fostrap">
+            
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="card">
+                                    <a class="img-card" href="@Url.Content(item.Image)">
+                                        <img src="@Url.Content(item.Image)" />
+                                    </a>
+                                    <div class="card-content">
+                                        <h4 class="card-title">
+                                            <a asp-controller="Service" asp-action="Details" asp-route-id="@item.Id">
+                                                @item.Title
+                                            </a>
+                                        </h4>
+                                        <p class="">
+                                            @if (item.Content.Length <= 88)
+
+                                            {
+                                                @Html.Raw(item.Content)
+
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw(item.Content.Substring(0, 88))<text>...</text>
+                                            }
+
+                                        </p>
+                                       
+                                    </div>
+                                    <div class="card-read-more">
+                                        <a asp-action="Details" asp-route-id="@item.Id" style="margin-right:250px" class="btn btn-link ">
+
+                                            Read More
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+

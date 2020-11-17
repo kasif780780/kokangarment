@@ -1,0 +1,207 @@
+﻿@using BasePackageModule2.Extensions
+@model BasePackageModule2.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="product-details app-pages app-section">
+    <div class="container">
+        <div class="entry">
+            <div class="row">
+
+
+                <div id="choose-@Model.Id" class="col s12">
+
+                    <img src="@Model.Image" />
+                </div>
+
+
+
+                @*<div class="col s12">
+                        <ul class="tabs">
+                            @foreach (var productImage1 in Model.Images)
+                            {
+
+                                <li class="tab col s4">
+                                    <a href="#choose-@productImage1.Id" class="">
+                                        <img src="@productImage1.Img" />
+                                    </a>
+                                </li>
+
+                            }
+
+                            <div class="indicator" style="right: 318.75px; left: 318.719px;"></div>
+                            <div class="indicator" style="right: 318.75px; left: 318.719px;"></div>
+                        </ul>
+                    </div>*@
+            </div>
+        </div>
+
+        <div class="details">
+            <h5>@Model.Name</h5>
+            <div class="rating">
+                <span class="active"><i class="fa fa-star"></i></span>
+                <span class="active"><i class="fa fa-star"></i></span>
+                <span class="active"><i class="fa fa-star"></i></span>
+                <span class="active"><i class="fa fa-star"></i></span>
+                <span class=""><i class="fa fa-star"></i></span>
+            </div>
+            <p>
+                @Model.ShortDescription
+            </p>
+            <div class="price"><h5>Rs.@Model.FinalPrice</h5></div>
+            <form class="mt-4" id="buy-add-form" method="get" asp-controller="Cart" asp-action="AddToCart">
+
+                <label for="qty">Quantity</label>
+                <select id="qty" class="browser-default">
+                    <option disabled selected>Select Quantity</option>
+                    @for (int i = 1; i < 11; i++)
+                    {
+                        <option>@i</option>
+                    }
+                </select>
+
+
+
+              
+
+            </form>
+
+            <button id="addToCart" class="button">ADD TO CART</button>
+            <button id="buyNow" class="button cyan darken-1">Buy Now</button>
+
+        </div>
+        <div class="desc-review">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s6">
+                            <a href="#description"><h5>Description</h5></a>
+                        </li>
+                        <li class="tab col s6">
+                            <a href="#review"><h5>Review</h5></a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="description" class="col s12">
+                    <p>
+                        @Html.Raw(Model.Description)
+
+                    </p>
+                </div>
+                <div id="review" class="review col s12">
+                    <div class="comment">
+
+
+                        <div class="post-review">
+                            <h6>Post Review</h6>
+                            <form action="#">
+                                <input type="text" placeholder="Name">
+                                <input type="email" placeholder="Email">
+                                <textarea cols="20" rows="10" placeholder="Comment"></textarea>
+                                <button class="button">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--container.//-->
+
+
+
+
+@section Scripts
+{
+    <script src="~/lib/jquery/jquery.js"></script>
+   
+
+
+    <script>
+        $(document).ready(function() {
+            $("#addToCart").click(function(event) {
+                event.preventDefault();
+
+                var qty = $("#qty").val();
+
+                if (qty < 1) {
+                    alert("Please Select Quantity more than 1.");
+                } else {
+                    $('#buy-add-form').append('<input type="hidden" name="qty" value="' + qty + '" />');
+                    $('#buy-add-form').append('<input type="hidden" name="productId" value="' + @Model.Id + '" />');
+                    $("#buy-add-form").submit();
+                }
+            });
+
+
+            $("#buyNow").click(function(event) {
+                event.preventDefault();
+
+                $("#buy-add-form").attr("action", "/BuyNow");
+
+                var qty = $("#qty").val();
+
+                if (qty < 1) {
+                    alert("Please Select Quantity more than 1.");
+                } else {
+                    $('#buy-add-form').append('<input type="hidden" name="qty" value="' + qty + '" />');
+                    $('#buy-add-form').append('<input type="hidden" name="productId" value="' + @Model.Id + '" />');
+                    $("#buy-add-form").submit();
+                }
+            });
+
+        });
+    </script>
+
+
+
+
+
+   
+    <script>
+        function checkpins() {
+            event.preventDefault();
+            $("#pinstatus").text("connecting....")
+            if ($("#pincode").val() == "") {
+                $("#pinstatus").removeClass("text-success")
+                $("#pinstatus").addClass("text-danger")
+                $("#pinstatus").text("Please Enter Pincode");
+                return 0;
+            }
+            $.ajax(
+                {
+                    type: "POST",
+                    url: '/Products/checkpin',
+                    dataType: 'json', // type of response data
+                    traditional: true,
+
+                    data: {
+                        "code": $("#pincode").val()
+                    },
+                    success: function (data, status, xhr) {   // success callback function
+                        console.log(data);
+                        if (data == true) {
+                            $("#pinstatus").text("Dilivery Available")
+                            $("#pinstatus").removeClass("text-danger")
+                            $("#pinstatus").addClass("text-success")
+                        }
+                        else {
+                            $("#pinstatus").text("Not Available")
+                            $("#pinstatus").removeClass("text-success")
+                            $("#pinstatus").addClass("text-danger")
+                        }
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) { // error callback
+                        console.log(jqXhr);
+                        $("#pinstatus").text("Not Available")
+                        $("#pinstatus").removeClass("text-success")
+                        $("#pinstatus").addClass("text-danger")
+                    }
+                });
+        }
+
+    </script>
+}

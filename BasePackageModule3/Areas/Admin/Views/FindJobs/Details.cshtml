@@ -1,0 +1,106 @@
+﻿@model BasePackageModule3.Models.FindJob
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="col-sm-12">
+    <div class="card">
+
+        <div class="card-block">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Details</h1>
+
+                    <div>
+                        <h4>FindJob</h4>
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.FullName)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.FullName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Mobile)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Mobile)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Email)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.City)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.City)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Location)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Location)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Age)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Age)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Gender)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Gender)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Qualification)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Qualification)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.SchoolMedium)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.SchoolMedium)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.SpeakEnglish)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.SpeakEnglish)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Experience)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Experience)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.JobRole)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.JobRole)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Resume)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Resume)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.FindJobId">Edit</a>
+                        <a class="btn  btn-primary" asp-action="Index">Back to List</a>
+                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>

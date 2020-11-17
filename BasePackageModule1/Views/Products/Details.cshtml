@@ -1,0 +1,77 @@
+﻿@using BasePackageModule1.Extensions
+@model BasePackageModule1.Models.Product
+
+
+<div class="container">
+    <hr>
+
+    <div class="row mb-4">
+        <aside class="col-sm-5 border-right">
+            <div class="col-lg-12 left-side-product-box pb-3">
+                <img src="@Model.Image" class="border p-3" alt="@Model.Name">
+            @if (Model.Images.Any())
+            {
+            <span class="sub-img">
+                @foreach (var productImage in Model.Images)
+                {
+                    <img src="@productImage.Img" class="border p-2">
+                }
+
+            </span>
+            }
+            </div>
+       
+        </aside>
+        <aside class="col-sm-7">
+            <form method="post">
+                <article class="card-body p-5">
+                  
+                    <h3 class="title mb-3">@Model.Name</h3>
+
+                    <p class="price-detail-wrap">
+                        <span class="price h3 text-warning">
+                            <span class="currency">Inr Rs.</span><span class="num">@Model.Price</span>
+                        </span>
+
+                    </p> <!-- price-detail-wrap .// -->
+                    <dl class="item-property">
+                        <dt>Description</dt>
+                        <dd>
+                            <p>
+                                @Html.Raw(Model.Description)
+                            </p>
+                        </dd>
+                    </dl>
+                    <dl class="param param-feature">
+                    </dl>  <!-- item-property-hor .// -->
+                    <dl class="param param-feature">
+                    </dl>  <!-- item-property-hor .// -->
+                    <dl class="param param-feature">
+                    </dl>  <!-- item-property-hor .// -->
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <dl class="param param-inline">
+                                <dt>Quantity: </dt>
+                                <dd>
+                                    <input  class="form-control" />
+                                </dd>
+                            </dl>  <!-- item-property .// -->
+                        </div> <!-- col.// -->
+                        <div class="col-sm-7">
+                            <!-- item-property .// -->
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
+                    <hr>
+                    <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
+                    <button type="submit" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </button>
+                </article>
+            </form>
+        </aside> <!-- col.// -->
+    </div> <!-- row.// -->
+
+
+
+</div>
+<!--container.//-->

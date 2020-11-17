@@ -1,0 +1,62 @@
+﻿@model X.PagedList.IPagedList<BasePackageModule2.Models.Product>
+@using X.PagedList.Mvc.Core
+
+
+
+    <div class="container mt-5">
+        <div class="row">
+
+
+            @if (Model.Any())
+            {
+                <partial name="_ItemAreaPartial" model="Model" />
+
+                <ul class="pagination">
+
+                    <li class="waves-effect">
+                        @Html.PagedListPager(Model, pageindex => Url.Action("Index", new { pageindex, pageSize = ViewBag.PerPageItems, orderby = ViewBag.orderby }))
+                    </li>
+
+                </ul>
+            }
+            else
+            {
+                <div class="container mt-5">
+                    <div class="row">
+                        <aside class="col-md-12">
+                            <h3>No Results Found!</h3>
+                        </aside>
+                    </div>
+                </div>
+            }
+            </div>
+    </div>
+
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
+
+}
+
+@section Scripts {
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+
+
+    <script>
+
+        $(".js-range-slider").ionRangeSlider({
+            skin: "big",
+            onStart: function (data) {
+                $('#min_price').val(data.from);
+                $('#max_price').val(data.to);
+            },
+            onChange: function (data) {
+                //console.dir(data);
+                $('#min_price').val(data.from);
+                $('#max_price').val(data.to);
+            }
+        });
+
+    </script>
+}

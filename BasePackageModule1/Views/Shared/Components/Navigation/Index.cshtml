@@ -1,0 +1,120 @@
+﻿@model BasePackageModule1.ViewModels.NavViewModel
+@using System.Text.Encodings.Web
+@using Microsoft.AspNetCore.Http
+@using BasePackageModule1.TagHelpers
+@using BasePackageModule1.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 text-center">
+            <a class="navbar-brand text-white" href="@Url.Action("Index","Home")">
+                <img width="80" src="@Url.Content(Model.Logo.HeaderLogo)" alt="Logo">
+            </a>
+        </div>
+        <div class="col-md-11">
+            <h4 class="tagline">@Model.BusinessProfile.BusinessName</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" id="navbar">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg p-0">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+
+                    @foreach (var menu in Model.Menus)
+                    {
+                        @if (menu.Type == "interLink" || menu.Type == null)
+                        {
+                            <li class="nav-item">
+                                <a href="@menu.Url" class="nav-link">
+                                    @menu.Name
+                                </a>
+                            </li>
+                        }
+                        else if (menu.Type == "externalLink")
+                        {
+                            <li class="nav-item">
+                                <a href="@menu.Url" class="nav-link" target="_blank">
+                                    @menu.Name
+                                </a>
+                            </li>
+                        }
+                        else if (menu.Type == "productCollection" && menu.DisplayAs == "dropdown")
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @menu.Name
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @foreach (var menuProduct in menu.MenuProducts)
+                                    {
+                                        <a class="dropdown-item" asp-controller="Products" asp-action="Details" asp-route-id="@menuProduct.ProductId">@menuProduct.Product.Name</a>
+                                    }
+                                </div>
+                            </li>
+                        }
+                        else if (menu.Type == "productCollection" && menu.DisplayAs == "list")
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Products" asp-action="show"  asp-route-menuName="@menu.Name.Replace(" ", "-")" asp-route-id="@menu.Id" class="nav-link" target="_blank">
+                                    @menu.Name
+                                </a>
+                            </li>
+                        }
+
+                    }
+
+                    @*<li class="nav-item">
+            <a asp-action="Index" asp-controller="Home" class="nav-link @Html.IsActive("Home", "Index")">
+                Home
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-action="Index" asp-controller="Products" class="nav-link @Html.IsActive("products", "Index")">
+                Products
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link  @Html.IsActive("Blog", "Index")" href="@Url.Action("Index", "Blog")">Latest Updates</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link  @Html.IsActive("Gallery", "Index")" href="@Url.Action("Index", "Gallery")">Gallery</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @Html.IsActive("Home", "Contact")" href="@Url.Action("Contact", "Home")"> Contact us</a>
+        </li>*@
+                    @if (Model.More.Any())
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                More
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @foreach (var service in Model.More)
+                                {
+                                    <a class="dropdown-item" asp-controller="Page" asp-action="Details" asp-route-id="@service.Id">@service.Name</a>
+                                }
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    @*<partial name="_LoginPartial" />*@
+
+                    @*<li class="nav-item ">
+                            <a style="color: #fff; font-size: 15px; font-weight: 600;" class="btn btn-primary" href="@Url.Action("Contact", "Home")"> Submit Enquiry</a>
+                        </li>*@
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

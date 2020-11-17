@@ -1,0 +1,101 @@
+﻿@model BasePackageModule3.ViewModels.OrderDetailsViewModel
+
+<form method="post" style=" margin: 0 !important; 
+     font-family: Raleway; 
+     padding: 0 !important; 
+     width: 100%; 
+     min-width: 0 !important;">
+    <div class=" container row ml-1 p-4 border">
+        <div class="col-lg-8 col-12">
+            <input type="hidden" asp-for="OrderHeader.Id" />
+            <div class="form-group row">
+                <div class="col-3">
+                    <label style="margin-left: 6rem;"> Name</label>
+                </div>
+                <div class="col-9">
+                    <input  asp-for="OrderHeader.Pickupname" disabled class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label style="margin-left: 6rem;">Email</label>
+                </div>
+                <div class="col-9">
+                    <input  asp-for="OrderHeader.ApplicationUser.Email" disabled class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label style="margin-left: 6rem;">Phone</label>
+                </div>
+                <div class="col-9">
+                    <input  asp-for="OrderHeader.ApplicationUser.PhoneNumber" disabled class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label style="margin-left: 6rem;">Order Total </label>
+                </div>
+                <div class="col-9">
+                    <input  asp-for="OrderHeader.OrderTotal" disabled class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label style="margin-left: 6rem;">  Order Date</label>
+                </div>
+                <div class="col-9">
+                    <input value="@Model.OrderHeader.PickUpTime.ToShortDateString() @Model.OrderHeader.PickUpTime.ToShortTimeString()" disabled class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label style="margin-left: 6rem;">Order Date</label>
+                </div>
+                <div class="col-9">
+                    <input asp-for="OrderHeader.Comments" disabled class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <h4 class="d-flex justify-content-between align-content-center mb-3">
+                <span class="text-muted"> Order ID:</span>
+                <span class="badge badge-secondary badge-pill">@Model.OrderHeader.Id</span>
+
+            </h4>
+            <ul class="list-group mb-3">
+                @*@{ var total = 0.0;}*@
+                @foreach (var details in Model.OrderDetails)
+                {
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div>
+                            <h6 class="my-1">@details.Name</h6>
+                            <small class="text-muted">Quantity :@details.Count</small>
+                        </div>
+                        <span class="text-muted">@(details.Price * details.Count)</span>
+
+                    </li>
+                }
+
+                @if (Model.OrderHeader.CouponCode != null)
+                {
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div class="text-success">
+                            <h6 class="my-1">Promo Code</h6>
+                            <small>@Model.OrderHeader.CouponCode</small>
+                        </div>
+                        <span class="text-muted">@(Model.OrderHeader.orderToatlOriginal - Model.OrderHeader.OrderTotal)</span>
+
+                    </li>
+                }
+
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <span class="text-info">Total (INR)</span>
+                    <strong class="text-info">Rs. @Model.OrderHeader.OrderTotal</strong>
+                </li>
+            </ul>
+            <button type="submit" disabled class="btn btn-info form-control">@Model.OrderHeader.status</button>
+        </div>
+    </div>
+</form>

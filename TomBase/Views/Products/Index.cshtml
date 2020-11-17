@@ -1,0 +1,246 @@
+﻿@model X.PagedList.IPagedList<BasePackageModule2.Models.Product>
+@using X.PagedList.Mvc.Core
+
+
+<style>
+    .slider-main-area {
+        display: none !important;
+    }
+</style>
+<div class="breadcrumb-area bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                    <li class="breadcrumb-item active">Shop</li> 
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content-wraper start -->
+<div class="content-wraper bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 order-2 order-lg-1">
+                <!-- filter-price start -->
+                <div class="filter-price sidebar-categores-box mt-60">
+                    <div class="secton-title">
+                        <h2>Price</h2>
+                    </div>
+                    <div class="filter-price-content">
+
+                        <form method="get">
+                            <input type="text" class="js-range-slider"
+                                   data-type="double"
+                                   data-min="50"
+                                   data-max="20000"
+                                   data-from="@ViewBag.minPrice"
+                                   data-to="@ViewBag.maxPrice"
+                                   data-grid="false" />
+                            <input type="hidden" id="min_price" name="minPrice" value="@ViewBag.minPrice">
+                            <input type="hidden" id="max_price" name="maxPrice" value="@ViewBag.maxPrice">
+                            <input type="hidden" name="category" value="@ViewBag.category" />
+                            <button type="submit" class="btn btn-block btn-primary mt-4">Apply</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- filter-price end -->
+                <!-- categories-box start -->
+                <div class="categories-box sidebar-categores-box">
+                    <div class="secton-title">
+                        <h2>Categories</h2>
+                    </div>
+                    <div class="sidebar-categores-inner">
+                        @await Component.InvokeAsync("Category")
+                    </div>
+                </div>
+                <!-- categories-box end -->
+
+
+            </div>
+            <div class="col-lg-9 order-1 order-lg-2">
+                <div class="row">
+                    <div class="col">
+                        <div class="shop-top-bar mt-60">
+                            <div class="shop-bar-inner">
+                                <div class="product-view-mode">
+                                    <!-- shop-item-filter-list start -->
+                                    <ul role="tablist" class="nav shop-item-filter-list">
+                                        <li role="presentation" class="active"><a href="#grid" aria-controls="grid" role="tab" data-toggle="tab" class="active show" aria-selected="true"><i class="fa fa-th"></i></a></li>
+                                        <li role="presentation"><a href="#list" aria-controls="list" role="tab" data-toggle="tab"><i class="fa fa-th-list"></i></a></li>
+                                    </ul>
+                                    <!-- shop-item-filter-list end -->
+                                </div>
+                                <div class="toolbar-amount">
+                                    <span>Showing 1 to 9 of 15</span>
+                                </div>
+                            </div>
+                            <div class="product-select-box">
+                                <div class="product-show">
+                                    <p>Show:</p>
+                                    <select class="nice-select" name="showing" style="display: none;">
+                                        <option value="1">8</option>
+                                        <option value="2">12</option>
+                                        <option value="3">16</option>
+                                        <option value="4">20</option>
+                                        <option value="5">24</option>
+                                    </select>
+                                </div>
+                                <div class="product-short">
+                                    <p>Sort By:</p>
+                                    <select class="nice-select" name="sortby" style="display: none;">
+                                        <option value="trending">Default</option>
+                                        <option value="sales">Name (A - Z)</option>
+                                        <option value="sales">Name (Z - A)</option>
+                                        <option value="rating">Price (Low > High)</option>
+                                        <option value="date">Rating (Lowest)</option>
+                                        <option value="price-asc">Model (A - Z)</option>
+                                        <option value="price-asc">Model (Z - A)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <partial name="_ItemAreaPartial" model="Model" />
+                <div class="paginatoin-area">
+                    <div class="row">
+                        
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            @Html.PagedListPager(Model, pageindex => Url.Action("Index", new { pageindex, pageSize = ViewBag.PerPageItems, orderby = ViewBag.orderby }), new X.PagedList.Mvc.Core.Common.PagedListRenderOptions { LiElementClasses = new string[] { "page-item" }, PageClasses = new string[] { "page-link" } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content-wraper end -->
+@*<section class="section section-dark section-resume" id="resume">
+        <div class="container">
+            <div class="section-head">
+
+                <h2 class="d-none">My Expertises</h2>
+            </div>
+
+            <div class="row ">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-12 col-md-6 mt-2">
+                        <div class="card">
+                            <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                            <div class="card-body">
+                                <h6 class="card-title text-center">@item.Name</h6>
+
+                                <p class="text-center"> <a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id" class="text-dark">Details</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+
+
+            </div>
+    <div class="paginatoin-area">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <p>Showing 10-13 of 13 item(s) </p>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <ul class="pagination-box">
+                            @Html.PagedListPager(Model, pageindex => Url.Action("Index", new { pageindex, pageSize = ViewBag.PerPageItems, orderby = ViewBag.orderby }), new X.PagedList.Mvc.Core.Common.PagedListRenderOptions { LiElementClasses = new string[] { "page-item" }, PageClasses = new string[] { "page-link" } })
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <nav class="m-5" style="text-align: center">
+                @Html.PagedListPager(Model, pageindex => Url.Action("Index", new { pageindex, pageSize = ViewBag.PerPageItems, orderby = ViewBag.orderby }), new X.PagedList.Mvc.Core.Common.PagedListRenderOptions { LiElementClasses = new string[] { "page-item" }, PageClasses = new string[] { "page-link" } })
+            </nav>
+        </div>
+    </section>*@
+
+
+@*<div class="container mt-5">
+        <div class="row">
+
+            <aside class="col-md-3 sidebar">
+                @if (Model.Any())
+                {
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Price range</h5>
+            <form method="get">
+                <input type="text" class="js-range-slider"
+                       data-type="double"
+                       data-min="50"
+                       data-max="20000"
+                       data-from="@ViewBag.minPrice"
+                       data-to="@ViewBag.maxPrice"
+                       data-grid="false" />
+                <input type="hidden" id="min_price" name="minPrice" value="@ViewBag.minPrice">
+                <input type="hidden" id="max_price" name="maxPrice" value="@ViewBag.maxPrice">
+                <input type="hidden" name="category" value="@ViewBag.category" />
+                <button type="submit" class="btn btn-block btn-primary mt-4">Apply</button>
+            </form>
+        </div>
+    </div>}
+                @await Component.InvokeAsync("Category")
+            </aside>
+            <aside class="col-md-9">
+                @if (Model.Any())
+                {
+    <partial name="_ItemAreaPartial" model="Model" />
+
+    <div class="paginatoin-area">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <p>Showing 10-13 of 13 item(s) </p>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <ul class="pagination-box">
+                            @Html.PagedListPager(Model, pageindex => Url.Action("Index", new { pageindex, pageSize = ViewBag.PerPageItems, orderby = ViewBag.orderby }), new X.PagedList.Mvc.Core.Common.PagedListRenderOptions { LiElementClasses = new string[] { "page-item" }, PageClasses = new string[] { "page-link" } })
+                        </ul>
+                    </div>
+                </div>
+            </div>
+                    <nav class="m-5" style="text-align: center">
+                        @Html.PagedListPager(Model, pageindex => Url.Action("Index", new { pageindex, pageSize = ViewBag.PerPageItems, orderby = ViewBag.orderby }), new X.PagedList.Mvc.Core.Common.PagedListRenderOptions { LiElementClasses = new string[] { "page-item" }, PageClasses = new string[] { "page-link" } })
+                    </nav> }
+                                else
+                                {
+                    <div class="container mt-5">
+                        <div class="row">
+                            <aside class="col-md-12">
+                                <h3>No Results Found!</h3>
+                            </aside>
+                        </div>
+                    </div>}
+            </aside>
+
+        </div>
+    </div>*@
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+
+
+<script>$(".js-range-slider").ionRangeSlider({
+        skin: "big",
+        onStart: function (data) {
+            $('#min_price').val(data.from);
+            $('#max_price').val(data.to);
+        },
+        onChange: function (data) {
+            //console.dir(data);
+            $('#min_price').val(data.from);
+            $('#max_price').val(data.to);
+        }
+    });</script>

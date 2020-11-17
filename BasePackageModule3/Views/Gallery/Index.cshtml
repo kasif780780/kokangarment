@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BasePackageModule3.Models.Image>
+
+<section class="about-us-section">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h2 class="text-center p-4"> Gallery</h2>
+        </div>
+    </div>
+
+</section>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a href="@Url.Content(item.Img)" class="fancybox" rel="ligthbox">
+                    <img src="@Url.Content(item.Img)" class="zoom img-fluid " alt="">
+
+                </a>
+            </div>
+        }
+
+
+
+
+
+
+    </div>
+
+</div>

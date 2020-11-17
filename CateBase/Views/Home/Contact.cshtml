@@ -1,0 +1,62 @@
+@model BasePackageModule2.ViewModels.ContactViewModel
+@{
+    ViewBag.Title = "Contact";
+}
+
+<div class="contact app-pages app-section">
+    <div class="container">
+        <div class="pages-title">
+            <h3>Contact Us</h3>
+        </div>
+        <form action="#">
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="number" placeholder="Telepon">
+            <input type="text" placeholder="Website">
+            <textarea cols="20" rows="10" placeholder="Your Message"></textarea>
+            <button class="button">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row py-5">
+        <div class="col-s12">
+            <div class="pages-title">
+
+
+                <div class="d-flex flex-column bd-highlight mb-3">
+                    <div class="p-2 bd-highlight">
+                        <span class="text-primary">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <p class="text-left" style="margin-left: 27px; margin-top: -25px;">
+                            @Model.BusinessProfile.Address<br />
+                            @Model.BusinessProfile.City   @Model.BusinessProfile.State -@Model.BusinessProfile.Pincode
+                        </p>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <a class="text-dark" href="tel:7506340634">
+                            <span class="text-primary"><i class="fas fa-phone"></i></span>
+                            <p class="text-left" style="margin-left: 27px; margin-top: -25px;">
+                                @Model.BusinessProfile.RegisteredContactNumber
+                            </p>
+                        </a>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <a class="text-dark" href="@Model.BusinessProfile.EmailAddress">
+                            <span class="text-primary"><i class="far fa-envelope"></i></span>
+                            <p class="text-left" style="margin-left: 27px; margin-top: -25px;">
+                                @Model.BusinessProfile.EmailAddress
+                            </p>
+                        </a>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

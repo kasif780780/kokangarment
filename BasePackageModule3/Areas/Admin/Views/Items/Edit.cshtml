@@ -1,0 +1,139 @@
+﻿@model BasePackageModule3.ViewModels.ItemViewModel
+@using BasePackageModule3.Extensions
+
+
+<div class="col-sm-12">
+    <!-- Basic Form Inputs card start -->
+    <div class="card">
+        <div class="card-header">
+
+            <h1>Edit</h1>
+            <h4>Items</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="card-header-right">
+                <i class="icofont icofont-spinner-alt-5"></i>
+            </div>
+
+        </div>
+        <div class="card-block">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Item.Id" />
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="form-group">
+                            <label asp-for="Item.Name" class="control-label"></label>
+                            <input asp-for="Item.Name" class="form-control" />
+                            <span asp-validation-for="Item.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Item.Image" class="control-label"></label>
+                            <input accept="image/*" name="files" multiple type="file" class="form-control" />
+                            <span asp-validation-for="Item.Image" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Item.Description" class="control-label"></label>
+                            <textarea id="Description" asp-for="Item.Description" class="form-control"></textarea>
+                            <span asp-validation-for="Item.Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Item.Price" class="control-label"></label>
+                            <input asp-for="Item.Price" class="form-control" />
+                            <span asp-validation-for="Item.Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Item.CategoryId" class="control-label"></label>
+                            <select asp-for="Item.CategoryId" id="CategoryId" asp-items="Model.Category.ToSelectListItem(Model.Item.CategoryId)" class="form-control"></select>
+                            <span asp-validation-for="Item.CategoryId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Item.SubCategoryId" class="control-label"></label>
+                            <select asp-for="Item.SubCategoryId" id="SubCategoryId" name="SubCategoryId" asp-items="@(new SelectList(string.Empty,"Id","Name"))" class="form-control"></select>
+                            <span asp-validation-for="Item.SubCategoryId" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label asp-for="Item.Alt" class="control-label"></label>
+                            <input asp-for="Item.Alt" data-role="tagsinput" class="form-control" />
+                            <span asp-validation-for="Item.Alt" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="@Url.Content(Model.Item.Image)" style="width:10rem;height:10rem" />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+@section styles
+{
+    <link href="~/lib/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript" src="/lib/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+tinymce.init({
+            selector: '#Description, #ShortDescription',
+            plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'table emoticons template paste help'
+            ],
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify |' +
+                'fontselect fontsizeselect | forecolor backcolor' +
+                ' bullist numlist outdent indent | link image | print preview media fullpage | ' +
+                'forecolor backcolor emoticons | help',
+            menu: {
+                favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | spellchecker | emoticons' }
+            },
+            menubar: 'favs file edit view insert format tools table help',
+        });</script>
+
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        getSubCategory();
+        $('#CategoryId').change(function () {
+            getSubCategory();
+        });
+    });
+
+    function getSubCategory() {
+        var url = '@Url.Content("~/")' + "Admin/SubCategories/GetSubCategory";
+        var ddlsource = '#CategoryId';
+        $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+
+            var items = '';
+            $('#SubCategoryId').empty();
+            $.each(data, function (i, subcategory) {
+
+                items += "<option value='" + subcategory.value +"'>" + subcategory.text + "</option>";
+
+            });
+            $('#SubCategoryId').html(items);
+
+        })
+    }
+
+    </script>
+}

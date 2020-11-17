@@ -1,0 +1,28 @@
+﻿.banner {
+    .container {
+        .row {
+            .s6 {
+                .ctname{
+                   margin-bottom:20px;
+                }
+            }
+        }
+    }
+}
+.p-item {
+    margin-top:6rem;
+    .s6 {
+        .card {
+            .p-name {
+                text-align: center;
+                margin-top: 14px;
+            }
+
+            .p-price {
+                text-align: center;
+                margin-top: 14px;
+                margin-bottom:5px;
+            }
+        }
+    }
+}

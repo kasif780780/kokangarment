@@ -1,0 +1,34 @@
+﻿@model BasePackageModule2.ViewModels.NavViewModel
+
+<footer>
+    <div class="container">
+        <h6>Find & follow us</h6>
+        <ul class="icon-social">
+            @if (Model.BusinessProfile.FacebookPageURL != null)
+            {
+                <li class="facebook"><a href="@Model.BusinessProfile.FacebookPageURL"><i class="fa fa-facebook"></i></a></li>
+            }
+            @if (Model.BusinessProfile.TwitterURL != null)
+            {
+                <li class="twitter"><a href="@Model.BusinessProfile.TwitterURL"><i class="fa fa-twitter"></i></a></li>
+            }
+           
+            @if (Model.BusinessProfile.InstagramPageURL != null)
+            {
+                <li class="instagram"><a href="@Model.BusinessProfile.InstagramPageURL"><i class="fa fa-instagram"></i></a></li>
+            }
+
+        </ul>
+        <div class="tel-fax-mail">
+            <ul>
+                <li><span>Tel:</span> @Model.BusinessProfile.DisplayContact1</li>
+                <li><span>Fax:</span> @Model.BusinessProfile.DisplayContact2</li>
+                <li><span>Email:</span> @Model.BusinessProfile.EmailAddress</li>
+            </ul>
+        </div>
+        <div class="ft-bottom">
+            <span>Copyright © @DateTime.Now.Year All Rights Reserved </span>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->

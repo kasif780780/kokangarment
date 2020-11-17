@@ -1,0 +1,33 @@
+﻿@model BasePackageModule3.ViewModels.OrderDetailsViewModel
+
+@{
+    ViewData["Title"] = "Confirm";
+}
+
+<br />
+<div class="container border mb-4">
+    <div class="row" style="margin-top:20px; margin-left:20px;">
+        <div class="col-8">
+            <h2 class="text-info">
+                Order Confirmed
+            </h2>
+
+        </div>
+        <div class="col-4 text-right" style="margin-left:-30px;">
+            <a asp-action="Index" asp-controller="Home" class="btn btn-success form-control">New Order</a>
+        </div>
+    </div>
+    @if (Model.OrderHeader != null)
+    {
+        <div class="p-3">
+            Your Order has been Confirmed ! Please see the order Summary Below.
+        </div>
+        <partial name="_IndividualOrderDetails" model="Model" />
+    }
+    else
+    {
+        <div class="text-danger">Error...Please Try agian</div>
+    }
+</div>
+
+

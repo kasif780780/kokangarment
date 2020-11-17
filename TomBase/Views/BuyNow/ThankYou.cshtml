@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Thank you";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+
+<h2>Thank you for payment</h2>
+<p>Your Order has been placed</p>
+
+<a asp-controller="Home" asp-action="Index" class="button">Continue Shopping</a>
+
+<a asp-action="Index" asp-controller="Orders" class="button">Goto Orders</a>

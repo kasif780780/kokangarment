@@ -1,0 +1,34 @@
+﻿@model IEnumerable<BasePackageModule2.Models.Product>
+
+    <link href="~/css/home.css" rel="stylesheet" />
+    <section class="p-item">
+        @if (Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col s6">
+
+
+                    <div class="card medium">
+                        <div class="card-image">
+                            <a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">
+                                <img src="@Url.Content(item.Image)">
+                            </a>
+
+                        </div>
+                        <a asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">
+                            <h4 class="p-name">@item.Name</h4>
+                            <h3 class="p-price">Rs. @item.FinalPrice</h3>
+                            </a>
+                            <div class="card-action">
+                                <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye"></i></a>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@item.Id">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </section>

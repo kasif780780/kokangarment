@@ -1,0 +1,281 @@
+﻿@model BasePackageModule2.ViewModels.NavViewModel
+@using System.Text.Encodings.Web
+@using Microsoft.AspNetCore.Http
+@using BasePackageModule2.TagHelpers
+@using BasePackageModule2.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Identity
+
+
+
+<header>
+    <!-- header-area start -->
+    <div class="header-area sticky-header bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <!-- logo start -->
+                    <div class="logo">
+                        <a asp-action="Index" asp-controller="Home"><img src="@Model.Logo.HeaderLogo" /></a>
+                        
+                    </div>
+                    <!-- logo end -->
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="main-menu main-menu-style-2">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Home">Home</a>
+
+                                </li>
+                                <li><a asp-action="Index" asp-controller="AboutUs">About us</a></li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Products">Shop</a>
+                                    <ul class="mega-menu">
+                                        @foreach (var menu in Model.Menus)
+                                        {
+                                            if (menu.Type == "categoryCollection")
+                                            {
+                                                <li>
+                                                    <a href="#">@menu.Name </a>
+                                                    <ul>
+                                                        @foreach (var menuCategory in menu.MenuCategories)
+                                                        {
+                                                            <li><a asp-area="" asp-controller="Products" asp-action="Index" asp-route-category="@menuCategory.Category.Name">@menuCategory.Category.Name</a></li>
+
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            }
+                                        }
+
+
+                                    </ul>
+                                </li>
+
+                                <li><a href="/Blog">Blog</a></li>
+
+
+
+                                <li><a asp-action="Contact" asp-controller="Home">Contact us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+               
+            </div>  
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Mobile Menu Area Start -->
+                    <div class="mobile-menu-area d-block d-lg-none">
+                        <div class="mobile-menu">
+                            <nav id="mobile-menu-active">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Home</a>
+
+                                    </li>
+                                    <li><a href="about.html">About us</a></li>
+                                    <li>
+                                        <a href="shop.html">Shop</a>
+                                        <ul class="mega-menu">
+                                            @foreach (var menu in Model.Menus)
+                                            {
+                                                if (menu.Type == "categoryCollection")
+                                                {
+                                                    <li>
+                                                        <a href="#">@menu.Name </a>
+                                                        <ul>
+                                                            @foreach (var menuCategory in menu.MenuCategories)
+                                                            {
+                                                                <li><a asp-area="" asp-controller="Products" asp-action="Index" asp-route-category="@menuCategory.Category.Name">@menuCategory.Category.Name</a></li>
+
+                                                            }
+                                                        </ul>
+                                                    </li>
+                                                }
+                                            }
+
+
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="/Blog">Blog</a></li>
+
+
+
+                                    <li><a href="contact.html">Contact us</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu Area End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header-area end -->
+    <!-- main-menu-area start -->
+    <partial name="_LoginPartial" />
+    <!-- main-menu-area end -->
+    <!-- mobile-categorei-menu start -->
+    <div class="container d-block d-lg-none">
+        <div class="vertical-menu pb-30">
+            <span class="categorie-title mobile-categorei-menu">all Categories</span>
+            <nav>
+                <div class="category-menu sidebar-menu sidbar-style mobile-categorei-menu-list menu-hidden " id="cate-mobile-toggle">
+                    <ul>
+                        @foreach (var menu in Model.Menus)
+                        {
+                            if (menu.Type == "categoryCollection")
+                            {
+                                @foreach (var menuCategory in menu.MenuCategories)
+                                {
+                                    <li><a asp-controller="Products" asp-action="Index" asp-route-category="@menuCategory.Category.Name">@menuCategory.Category.Name</a></li>
+
+                                }
+                            }
+                        }
+
+                    </ul>
+                </div>
+                <!-- category-menu-end -->
+            </nav>
+        </div>
+    </div>
+    <!-- mobile-categorei-menu end -->
+</header>
+
+<div class="slider-main-area pt-60 bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row sub-row bg-white">
+                    <div class="sub-col col-lg-3 d-md-hide d-xs-hide">
+                        <div class="all-categories-menu-2 ">
+                            <div class="categories-toggler-menu">
+                                <span> All Categories </span>
+                            </div>
+                            <div class="vertical-menu-list">
+                                <ul>
+                                    @foreach (var menu in Model.Menus)
+                                    {
+                                        if (menu.Type == "categoryCollection")
+                                        {
+
+                                            <li>
+                                                <a href="#">@menu.Name  <span><i class="fa fa-angle-right"></i></span></a>
+                                                <ul class="right-sub-menu">
+                                                    @foreach (var menuCategory in menu.MenuCategories)
+                                                    {
+                                                        <li>
+                                                            <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-category="@menuCategory.Category.Name">@menuCategory.Category.Name</a>
+
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            </li>
+
+                                        }
+                                        @*@if (menu.Type == "interLink" || menu.Type == null)
+                                        {
+                                            <li>
+                                                <a href="@menu.Url">@menu.Name</a>
+                                            </li>
+                                        }
+                                        else if (menu.Type == "externalLink")
+                                        {
+                                            <li>
+                                                <a href="@menu.Url">@menu.Name</a>
+                                            </li>
+                                        }*@
+                                    }
+
+
+
+
+                                  
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub-col col-lg-9">
+                        @if (Model.SliderImages.Any())
+                        {
+
+                                    <div class="slider-active-2 owl-carousel mt-20 owl-loaded owl-drag">
+                                        <!-- slider-wrapper start -->
+                                        <!-- slider-wrapper end -->
+                                        <!-- slider-wrapper start -->
+                                        <!-- slider-wrapper end -->
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage" style="transform: translate3d(-1622px, 0px, 0px); transition: all 0s ease 0s; width: 4866px;">
+                                                @foreach (var image in Model.SliderImages)
+                                                {
+                                                    if (Model.SliderImages.First().Id == image.Id)
+                                                    {
+                                                        <div class="owl-item active" style="width: 811px;">
+                                                            <div class="slider-wrapper" style="background-image:url(@image.Image)">
+                                                                <div class="container">
+                                                                    <div class="row justify-content-end">
+                                                                        <div class="col-lg-11 col-md-11">
+                                                                            <div class="slider-text-info style-3 slider-text-animation">
+
+                                                                                <div class="slier-btn-1">
+                                                                                    <a title="shop now" href="#" class="shop-btn">shop now</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="owl-item" style="width: 811px;">
+                                                            <div class="slider-wrapper" style="background-image:url(@image.Image)">
+                                                                <div class="container">
+                                                                    <div class="row justify-content-end">
+                                                                        <div class="col-lg-11 col-md-11">
+                                                                            <div class="slider-text-info style-3 slider-text-animation">
+
+                                                                                <div class="slier-btn-1">
+                                                                                    <a title="shop now" href="#" class="shop-btn">shop now</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav">
+                                            <button type="button" role="presentation" class="owl-prev">
+                                                <i class="ion-chevron-left"></i>
+                                            </button>
+                                            <button type="button" role="presentation" class="owl-next">
+                                                <i class="ion-chevron-right"></i>
+                                            </button>
+                                        </div><div class="owl-dots">
+                                            <button role="button" class="owl-dot active"><span></span></button>
+                                            <button role="button" class="owl-dot"><span></span></button>
+                                        </div>
+                                    </div>
+                                }
+                               
+                               
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

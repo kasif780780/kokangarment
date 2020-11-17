@@ -1,0 +1,433 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @await Component.InvokeAsync("Seo")
+    @RenderSection("MetaTags", required: false)
+    <meta name="robots" content="index,follow" />
+    @await Component.InvokeAsync("Favicon")
+    <link href="~/multistep/multi-form.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css">
+    <link href="~/theme/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/animate.css/animate.css">
+    <link rel="stylesheet" href="~/lib/slick-carousel/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-carousel/slick-theme.min.css" />
+    <link rel="stylesheet" href="~/lib/ekko-lightbox/ekko-lightbox.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <link href="~/lib/sitecss/main.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/admin/css/details.css" rel="stylesheet" />
+
+    @RenderSection("Styles", required: false)
+
+</head>
+<body>
+    @await Component.InvokeAsync("TopBar")
+    @await Component.InvokeAsync("Navigation")
+
+
+
+    @RenderBody()
+    @* <partial name="_BrandPartial"/> *@
+    @await Component.InvokeAsync("Footer")
+
+    @await Component.InvokeAsync("Enroll")
+
+    @if (TempData["_alert.type"] != null)
+    {
+        <script src="~/lib/notify/notify.min.js"></script>
+        <script>
+            $( document ).ready(function() {
+                $.notify('@TempData["_alert.title"]', '@TempData["_alert.type"]');
+            });
+
+        </script>
+    }
+
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/popper.js/umd/popper.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+
+    <script src="~/theme/js/slick.js"></script>
+    <script src="~/lib/ekko-lightbox/ekko-lightbox.js"></script>
+    <script src="~/theme/js/main.js"></script>
+    <script src="~/theme/js/slick.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/multistep/multi-form.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+    
+    @RenderSection("Scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.validator.addMethod('date', function (value, element, param) {
+                return (value != 0) && (value <= 31) && (value == parseInt(value, 10));
+            }, 'Please enter a valid date!');
+            $.validator.addMethod('month', function (value, element, param) {
+                return (value != 0) && (value <= 12) && (value == parseInt(value, 10));
+            }, 'Please enter a valid month!');
+            $.validator.addMethod('year', function (value, element, param) {
+                return (value != 0) && (value >= 1900) && (value == parseInt(value, 10));
+            }, 'Please enter a valid year not less than 1900!');
+            $.validator.addMethod('username', function (value, element, param) {
+                var nameRegex = /^[a-zA-Z0-9]+$/;
+                return value.match(nameRegex);
+            }, 'Only a-z, A-Z, 0-9 characters are allowed');
+
+            var val = {
+                // Specify validation rules
+                rules: {
+                    fname: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    phone: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        digits: true
+                    },
+                    date: {
+                        date: true,
+                        required: true,
+                        minlength: 2,
+                        maxlength: 2,
+                        digits: true
+                    },
+                    month: {
+                        month: true,
+                        required: true,
+                        minlength: 2,
+                        maxlength: 2,
+                        digits: true
+                    },
+                    year: {
+                        year: true,
+                        required: true,
+                        minlength: 4,
+                        maxlength: 4,
+                        digits: true
+                    },
+                    username: {
+                        username: true,
+                        required: true,
+                        minlength: 4,
+                        maxlength: 16,
+                    },
+                    password: {
+                        required: true,
+                        minlength: 8,
+                        maxlength: 16,
+                    }
+                },
+                // Specify validation error messages
+                messages: {
+                    fname: "First name is required",
+                    email: {
+                        required: "Email is required",
+                        email: "Please enter a valid e-mail",
+                    },
+                    phone: {
+                        required: "Phone number is requied",
+                        minlength: "Please enter 10 digit mobile number",
+                        maxlength: "Please enter 10 digit mobile number",
+                        digits: "Only numbers are allowed in this field"
+                    },
+                    date: {
+                        required: "Date is required",
+                        minlength: "Date should be a 2 digit number, e.i., 01 or 20",
+                        maxlength: "Date should be a 2 digit number, e.i., 01 or 20",
+                        digits: "Date should be a number"
+                    },
+                    month: {
+                        required: "Month is required",
+                        minlength: "Month should be a 2 digit number, e.i., 01 or 12",
+                        maxlength: "Month should be a 2 digit number, e.i., 01 or 12",
+                        digits: "Only numbers are allowed in this field"
+                    },
+                    year: {
+                        required: "Year is required",
+                        minlength: "Year should be a 4 digit number, e.i., 2018 or 1990",
+                        maxlength: "Year should be a 4 digit number, e.i., 2018 or 1990",
+                        digits: "Only numbers are allowed in this field"
+                    },
+                    username: {
+                        required: "Username is required",
+                        minlength: "Username should be minimum 4 characters",
+                        maxlength: "Username should be maximum 16 characters",
+                    },
+                    password: {
+                        required: "Password is required",
+                        minlength: "Password should be minimum 8 characters",
+                        maxlength: "Password should be maximum 16 characters",
+                    }
+                }
+            }
+            $("#myForm").multiStepForm(
+                {
+                    // defaultStep:0,
+                    beforeSubmit: function (form, submit) {
+                        console.log("called before submiting the form");
+                        console.log(form);
+                        console.log(submit);
+                    },
+                    validations: val,
+                }
+            ).navigateTo(0);
+        });
+    </script>
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
+
+    @if (TempData["_alert.type"] != null)
+    {
+        <script src="~/lib/notify/notify.min.js"></script>
+
+        <script>
+            $( document ).ready(function() {
+                $.notify('@TempData["_alert.title"]', '@TempData["_alert.type"]');
+            });
+
+        </script>
+    }
+    @if (TempData["EnrollFailed"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                $('#enrollModal').modal('show');
+            });
+        </script>
+    }
+
+    <script>
+        $(function () {
+            $(document).scroll(function () {
+                var $nav = $(".navbar-fixed-top");
+                $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+            });
+        });
+    </script>
+
+
+    <script>
+        $('.autoplay').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+
+
+    </script>
+    <script>
+        $('.single-item').slick({
+            autoplay: true,
+            autoplaySpeed: 2000
+        });
+    </script>
+    <script>
+        $('.variable-width').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            centerMode: true,
+            variableWidth: true
+        });
+
+
+    </script>
+
+    <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    </script>
+    <script>
+        $('.single-item').slick({
+            autoplay: true
+        });
+    </script>
+
+    <script>
+        $('.myplay').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+        });
+    </script>
+    <script>
+        $('.thslider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+        });
+    </script>
+    <script>
+        window.onscroll = function () { myFunction() };
+
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("fixed-top")
+            } else {
+                navbar.classList.remove("fixed-top");
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.customer-logos').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1000,
+                arrows: false,
+                dots: false,
+                pauseOnHover: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }, {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                }]
+            });
+        });
+    </script>
+    <script>
+        ``
+        $(document).ready(function () {
+            $('#myModal').modal('show');
+        });
+    </script>
+    <!-- WhatsHelp.io widget -->
+    @await Component.InvokeAsync("ChatBot")
+    <!-- /WhatsHelp.io widget -->
+
+    <script>
+        $(document).ready(function () {
+            //custom button for homepage
+            $(".share-btn").click(function (e) {
+                $('.networks-5').not($(this).next(".networks-5")).each(function () {
+                    $(this).removeClass("active");
+                });
+
+                $(this).next(".networks-5").toggleClass("active");
+            });
+        });
+
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                openEffect: "none",
+                closeEffect: "none"
+            });
+
+            $(".zoom").hover(function () {
+
+                $(this).addClass('transition');
+            }, function () {
+
+                $(this).removeClass('transition');
+            });
+        });
+
+    </script>
+    @*<script type="text/javascript">
+        $('.dropdown').hover(function () {
+            $('.dropdown-toggle', this).trigger('click');
+        });
+    </script>*@
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                function toggleDropdown(e) {
+                    const _d = $(e.target).closest('.dropdown'),
+                        _m = $('.dropdown-menu', _d);
+                    setTimeout(function () {
+                        const shouldOpen = e.type !== 'click' && _d.is(':hover');
+                        _m.toggleClass('show', shouldOpen);
+                        _d.toggleClass('show', shouldOpen);
+                        $('[data-toggle="dropdown"]', _d).attr('aria-expanded', shouldOpen);
+                    }, e.type === 'mouseleave' ? 300 : 0);
+                }
+
+                $('body')
+                    .on('mouseenter mouseleave', '.dropdown', toggleDropdown)
+                    .on('click', '.dropdown-menu a', toggleDropdown);
+
+                /* not needed, prevents page reload for SO example on menu link clicked */
+                $('.dropdown a').on('click tap', e => e.preventDefault())
+            });
+        </script>*@
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
+        $('.goog-logo-link').hide()
+    </script>
+</body>
+</html>

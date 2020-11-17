@@ -1,0 +1,96 @@
+﻿@model BasePackageModule3.Models.Service
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+
+
+<div class="container">
+    <div class="row">
+
+        <!-- Content Main -->
+        <div class="col-lg-8 mt-4">
+
+            
+                <h4 class="article-title">@Model.Title</h4>
+
+                <img src="@Url.Content(Model.Image)" alt="" style="    height: 22rem;
+    width: 49rem;"  class="img-thumbnail img-fluid  p-lg-2 mt-lg-1 mb-lg-3  mb-sm-3 mb-2">
+
+                <p>@Html.Raw(Model.Content)</p>
+        
+            <!-- AddToAny BEGIN -->
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style mb-4 mt-3">
+                <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                <a class="a2a_button_facebook"></a>
+                <a class="a2a_button_twitter"></a>
+                <a class="a2a_button_whatsapp"></a>
+                <a class="a2a_button_linkedin"></a>
+                <a class="a2a_button_telegram"></a>
+                <a class="a2a_button_google_gmail"></a>
+            </div>
+            <script async src="https://static.addtoany.com/menu/page.js"></script>
+            <!-- AddToAny END -->
+
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+            <div class="fb-comments" data-href="@Context.Request.Host@Context.Request.Path" data-numposts="10" data-width=""></div>
+
+
+            <!-- Author -->
+            <!-- Author End -->
+            <!-- Related Posts -->
+            <!-- Related Posts End -->
+            <!-- Comments End -->
+
+        </div>
+        <!-- Content Main End -->
+        <!-- Sidebar -->
+        <div class="col-lg-3" style="margin-top: 110px; margin-left: 9px;">
+            <aside class="impx-sidebar">
+
+
+
+
+                <!-- Tags Widget -->
+                <div class="impx-widget  p-lg-4 p-3 mb-lg-4 impx-padding-medium-vertical">
+                    <h5 class="mb-lg-4 mb-4">Services</h5>
+                    <ul>
+                        @foreach (Service post in ViewBag.Posts)
+                        {
+                        <li><a asp-action="Details" asp-route-id="@post.Id">@post.Title</a></li>
+                        }
+                    
+                       
+                    </ul>
+                </div>
+                <!-- Tags Widget End -->
+
+            </aside>
+        </div>
+        <!-- Sidebar End -->
+
+    </div>
+</div>
+
+
+     <script type="text/javascript">
+         $(document).ready(function () {
+             (function() {
+
+	$('.share').on('click', function(e) {
+
+		e.preventDefault();
+
+		var $this = $(this);
+
+		$this.animate({
+			'width': $this.width() == 304 ? '64px' : '304px'
+		}, 300, 'swing');
+
+	});
+
+} () );
+         }
+         
+</script>

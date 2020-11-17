@@ -1,0 +1,123 @@
+﻿@model BasePackageModule3.Models.Footer
+
+    <div class="col-sm-12">
+        <!-- Basic Form Inputs card start -->
+        <div class="card">
+            <div class="card-header">
+
+                <h1>Create</h1>
+                <h4>Business Profile</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="card-header-right">
+                    <i class="icofont icofont-spinner-alt-5"></i>
+                </div>
+
+            </div>
+            <div class="card-block">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Phone" class="control-label"></label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StreetAddress" class="control-label"></label>
+                        <input asp-for="StreetAddress" class="form-control" onclick="stringlength(document.form1.text1,1,61)" />
+                        <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="State" class="control-label"></label>
+                        <input asp-for="State" class="form-control" />
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Country" class="control-label"></label>
+                        <input asp-for="Country" class="form-control" />
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Zipcode" class="control-label"></label>
+                        <input asp-for="Zipcode" class="form-control" />
+                        <span asp-validation-for="Zipcode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WhatsApp" class="control-label"></label>
+                        <input asp-for="WhatsApp" class="form-control" />
+                        <span asp-validation-for="WhatsApp" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Facebook" class="control-label"></label>
+                        <input asp-for="Facebook" class="form-control" />
+                        <span asp-validation-for="Facebook" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LinkedIn" class="control-label"></label>
+                        <input asp-for="LinkedIn" class="form-control" />
+                        <span asp-validation-for="LinkedIn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Instagram" class="control-label"></label>
+                        <input asp-for="Instagram" class="form-control" />
+                        <span asp-validation-for="Instagram" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Twitter" class="control-label"></label>
+                        <input asp-for="Twitter" class="form-control" />
+                        <span asp-validation-for="Twitter" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FacebookLikePage" class="control-label"></label>
+                        <input asp-for="FacebookLikePage" class="form-control" />
+                        <span asp-validation-for="FacebookLikePage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Tagline" class="control-label"></label>
+                        <input asp-for="Tagline" class="form-control" />
+                        <span asp-validation-for="Tagline" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Copyright" class="control-label"></label>
+                        <input asp-for="Copyright" class="form-control" />
+                        <span asp-validation-for="Copyright" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <button> <a asp-action="Index" class="btn btn-info">Back to List</a></button>
+        </div>
+        
+</div>
+
+<script>
+    function stringlength(inputtxt, minlength, maxlength)
+{ 
+var field = inputtxt.value; 
+var mnlen = minlength;
+var mxlen = maxlength;
+
+if(field.length<mnlen || field.length> mxlen)
+{ 
+alert("Please input the userid between " +mnlen+ " and " +mxlen+ " characters");
+return false;
+}
+
+
+}
+</script>

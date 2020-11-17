@@ -1,0 +1,100 @@
+﻿@model Footer
+
+
+<style>
+
+
+#google_translate_element {
+  position: absolute;
+  top:0px;
+  z-index: 99999;
+  right: 1px;
+}
+
+/*.goog-te-gadget {
+  font-family: 'Open Sans', sans-serif;
+}
+.goog-te-gadget-simple  {
+  background-color: #;
+  border-left: 1px solid #d5d5d5;
+  border-top: 1px solid #9b9b9b;
+  border-bottom: 1px solid #e8e8e8;
+  border-right: 1px solid #d5d5d5;
+  font-size: 10pt;
+  display: inline-block;
+  padding-top: 1px;
+  padding-bottom: 2px;
+  cursor: pointer;
+  zoom: 1;
+}
+.goog-te-menu2 {
+  max-width: 100%;
+}*/
+/*Can't do much apparently - damn iframe*/
+/* ================================== *\
+    Mediaqueries
+\* ================================== */
+@@media (max-width: 667px) {
+  #google_translate_element {
+    top: 33px;
+    right: 60px;
+  }
+}
+
+</style>
+
+
+    <div class="top-bar" style="background: rgba(0, 0, 0, 0.7);">
+        <div class="container" style="">
+            <div class="row  ">
+                <div class="col-md-10 d-none d-lg-block d-md-block col-sm-12 col-lg-10">
+                    <ul>
+                        @if (Model.Phone != null)
+                        {
+                            <li><a class="text-white" href="tel:@Model.Phone"><i class="fas fa-phone-alt mr-2"></i> @Model.Phone</a></li>
+
+                        }
+                        @if (Model.Email != null)
+                        {
+                            <li><a class="text-white" href="@Model.Email"><i class="fas fa-paper-plane mr-2"></i>@Model.Email</a></li>
+                        }
+                        @if (Model.StreetAddress != null)
+                        {
+                            <li><i class="fas fa-map-marker-alt mr-1"></i>@Model.StreetAddress, @Model.City </li>
+                        }
+                       
+                    </ul>
+                    
+                    <div id="google_translate_element" style="margin-right:-66px;"></div>
+                </div>
+
+                <div class="col-md-2 col-sm-12 col-lg-2 top-bar-icons">
+                    <ul style="margin-left:5rem">
+                        @if (Model.Facebook != null)
+                        {
+                            <li><a href="@Model.Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        }
+                        @if (Model.Instagram != null)
+                        {
+                    <li><a href="@Model.Instagram"><i class="fab fa-instagram "></i></a></li>
+                        }
+                        @if (Model.Twitter != null)
+                        {
+                    <li><a href="@Model.Twitter"><i class="fab fa-twitter "></i></a></li>
+                        }
+                        @if (Model.WhatsApp != null)
+                        {
+                    <li><a href="@Model.WhatsApp"> <i class="fab fa-whatsapp "></i></a></li>
+                        }
+                        @if (Model.LinkedIn != null)
+                        {
+                    <li><a href="@Model.LinkedIn"><i class="fab fa-linkedin "></i></a></li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+ 
